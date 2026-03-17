@@ -103,34 +103,20 @@
         /* Clean & Professional Heart Fix */
 /* Permanent Heart Shape Fix using Border Radius */
 /* Permanent Heart Shape Fix using Border Radius */
-.enjoy-meal-container {
+.heart-wrap {
     width: 100%;
-    height: 160px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.heart-frame {
-    width: 130px;
-    height: 130px;
-    position: relative;
-    /* Instead of clip-path, we use border-radius to create a professional heart-like shape */
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    overflow: hidden;
-    border: 4px solid white; /* Adds a nice professional border */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.heart-wrap svg {
+    width: 160px; /* Heart ka size yahan se control karein */
+    height: 160px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); /* Professional shadow */
 }
 
-.heart-frame img {
-    width: 140%; /* Slightly bigger to cover corners */
-    height: 140%;
-    object-fit: cover;
-    /* Rotate the image back so the person looks straight */
-    transform: rotate(45deg) scale(1.2); 
-    display: block;
-}
 
 
         

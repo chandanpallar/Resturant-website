@@ -11,7 +11,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>:root {
+  <style>
+    /* Styling for the new Butter Chicken sections */
+
+.butter-chicken-detail {
+    padding: 80px 10%;
+    background-color: white; /* Contrast from the cream page */
+}
+
+.butter-chicken-detail h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.highlight-serif {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--secondary); /* The yellow color for emphasis */
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.recipe-block {
+    margin-top: 50px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.recipe-block h3 {
+    text-align: center;
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.recipe-content {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.ingredients, .steps {
+    flex: 1;
+}
+
+.ingredients h4, .steps h4 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.ingredients ul, .steps ol {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Specific styling for the hero image to ensure it looks 'butter chicken' perfect */
+.butter-chicken-feature img {
+    border: 5px solid white; /* Classic frame style */
+    padding: 10px;
+    background: white;
+}
+    
+    :root {
     --primary: #004d40;
     --secondary: #f9bc4d;
     --cream: #fdf7ed;
@@ -129,6 +197,53 @@ h1, h2, h3, h4 {
         </ul>
         <button class="btn-outline">Order Now</button>
     </nav>
+      <header class="hero">
+        <span class="badge">Classic Favorite!</span>
+        <h1>Experience the Best <br> <span class="highlight-serif">Butter Chicken</span> in Town</h1>
+        <button class="btn-primary">View Full Menu</button>
+        <div class="hero-image-container butter-chicken-feature">
+            <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1200&q=80" alt="Authentic Creamy Butter Chicken">
+        </div>
+      </header>
+      <section class="butter-chicken-detail">
+        <div class="container">
+            <div class="text-block">
+                <h2>Our Legendary <br> Butter Chicken</h2>
+                <p class="description">
+                    A timeless classic, and a cornerstone of our menu. Our authentic Butter Chicken (Murgh Makhani) features tender, charcoal-grilled chicken pieces simmered to perfection in our signature velvety tomato-cream sauce. Rich, flavorful, and made with love.
+                </p>
+            </div>
+
+            <div class="recipe-block">
+                <h3>Our Master Chef’s Secret Recipe</h3>
+                
+                <div class="recipe-content">
+                    <div class="ingredients">
+                        <h4>Key Ingredients:</h4>
+                        <ul>
+                            <li><strong>Chicken:</strong> Boneless thigh pieces (800g), yogurt marinade, tandoori spices.</li>
+                            <li><strong>Sauce Base:</strong> Ripe tomatoes (1kg), ginger-garlic paste, cashews (50g, soaked).</li>
+                            <li><strong>Richness:</strong> Fresh cream (100ml), butter (50g), olive oil.</li>
+                            <li><strong>Spices:</strong> Kasoori Methi (dried fenugreek leaves), Garam Masala, Kashmiri Chili powder, cardamom.</li>
+                            <li><strong>Balance:</strong> Sugar/honey (1 tsp), salt to taste.</li>
+                        </ul>
+                    </div>
+
+                    <div class="steps">
+                        <h4>Simple Method (Restaurant Style):</h4>
+                        <ol>
+                            <li><strong>Marinate:</strong> Coat chicken in yogurt and spices for at least 4 hours. Grill in a tandoor or pan-sear until charred.</li>
+                            <li><strong>Sauce:</strong> Sauté ginger-garlic paste, add tomatoes and cashews. Cook until mushy. Blend and strain for a smooth base.</li>
+                            <li><strong>Build:</strong> Heat butter and oil. Add spices, then the strained tomato base. Simmer.</li>
+                            <li><strong>Combine:</strong> Add grilled chicken to the sauce. Stir in cream and Kasoori Methi. Cook for another 5 minutes on low.</li>
+                            <li><strong>Serve:</strong> Garnish with cream and coriander. Best served with Naan or Jeera Rice.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+  
 
     <header class="hero">
         <span class="badge">New Menu Available!</span>

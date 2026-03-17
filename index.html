@@ -1,306 +1,245 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Restaurant</title>
-</head>
-<body>
-  <h1>My Restaurant Website</h1>
-  <p>Welcome to my website</p>
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    /* Styling for the new Butter Chicken sections */
-
-.butter-chicken-detail {
-    padding: 80px 10%;
-    background-color: white; /* Contrast from the cream page */
-}
-
-.butter-chicken-detail h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.highlight-serif {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: var(--secondary); /* The yellow color for emphasis */
-}
-
-.description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 600px;
-    margin-bottom: 40px;
-}
-
-.recipe-block {
-    margin-top: 50px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.recipe-block h3 {
-    text-align: center;
-    border-bottom: 2px solid var(--secondary);
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-.recipe-content {
-    display: flex;
-    gap: 40px;
-    margin-top: 30px;
-}
-
-.ingredients, .steps {
-    flex: 1;
-}
-
-.ingredients h4, .steps h4 {
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-.ingredients ul, .steps ol {
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-/* Specific styling for the hero image to ensure it looks 'butter chicken' perfect */
-.butter-chicken-feature img {
-    border: 5px solid white; /* Classic frame style */
-    padding: 10px;
-    background: white;
-}
-    
-    :root {
-    --primary: #004d40;
-    --secondary: #f9bc4d;
-    --cream: #fdf7ed;
-    --text: #333;
-}
-
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--cream);
-    color: var(--text);
-}
-
-h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif;
-    color: var(--primary);
-}
-
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 10%;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-/* Buttons */
-.btn-primary {
-    background: var(--primary);
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Hero Section */
-.hero {
-    text-align: center;
-    padding: 60px 10%;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin: 20px 0;
-}
-
-.hero-image-container img {
-    width: 80%;
-    margin-top: 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-/* Features Section */
-.features {
-    background-color: var(--secondary);
-    display: flex;
-    padding: 80px 10%;
-    align-items: center;
-    gap: 50px;
-}
-
-.features-content {
-    flex: 1;
-}
-
-/* Menu Cards */
-.menu-previews {
-    text-align: center;
-    padding: 80px 10%;
-}
-
-.card-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    width: 250px;
-}
-
-.card img {
-    width: 100%;
-    border-radius: 10px;
-}
-  </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Heaven | Flavor Meets Excellence</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Food Heaven | Butter Chicken Special</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #004d40;
+            --secondary: #f9bc4d;
+            --cream: #fdf7ed;
+            --text: #333;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--text);
+            overflow-x: hidden; /* Mobile par side scroll rokne ke liye */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        /* --- Navigation --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: white;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 40px 5%;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin: 20px 0;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .badge {
+            background: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* --- Butter Chicken Section --- */
+        .butter-chicken-detail {
+            padding: 60px 5%;
+            background-color: white;
+        }
+
+        .recipe-content {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .recipe-block {
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        /* --- Features (Yellow) --- */
+        .features {
+            background-color: var(--secondary);
+            display: flex;
+            padding: 60px 5%;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .features-content { flex: 1; }
+        .features-grid img { width: 100%; border-radius: 15px; }
+
+        /* --- Menu Cards --- */
+        .menu-previews {
+            text-align: center;
+            padding: 60px 5%;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; /* Card ko line change karne dega */
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            width: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* ========================================== */
+        /* MOBILE VIEW MODIFICATIONS (Media Queries)  */
+        /* ========================================== */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                padding: 0;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem; /* Font chhota kiya */
+            }
+
+            .features {
+                flex-direction: column; /* Yellow section stack ho jayega */
+                text-align: center;
+            }
+
+            .recipe-content {
+                flex-direction: column; /* Recipe ingredients aur steps stack ho jayenge */
+                gap: 20px;
+            }
+
+            .card {
+                width: 100%; /* Mobile par cards poori width lenge */
+                max-width: 350px;
+            }
+
+            .btn-outline {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">Food Heaven</div>
+        <div class="logo"><strong>FOOD HEAVEN</strong></div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
             <li><a href="#">Menu</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
-        <button class="btn-outline">Order Now</button>
+        <button class="btn-primary">Order Now</button>
     </nav>
-  <header class="hero">
-        <span class="badge">New Menu Available!</span>
-        <h1>Welcome to Food Heaven Where <br> Flavor Meets Excellence!</h1>
-        <button class="btn-primary">View Menu</button>
-  </header>
-        <header class="hero">
+
+    <header class="hero">
         <span class="badge">Classic Favorite!</span>
-        <h1>Experience the Best <br> <span class="highlight-serif">Butter Chicken</span> in Town</h1>
-        <button class="btn-primary">View Full Menu</button>
-        <div class="hero-image-container butter-chicken-feature">
+        <h1>Experience the Best <br> <span style="color:var(--secondary); font-style:italic;">Butter Chicken</span> in Town</h1>
+        
+        <div class="hero-image-container">
+            <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f47b636-6e7e-4754-86e4-f5944b3e884c_2463x2516.jpeg" alt="Butter Chicken">
         </div>
-        </header>
-  <div class="hero-image-container">
-    <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f47b636-6e7e-4754-86e4-f5944b3e884c_2463x2516.jpeg" 
-         alt="Delicious Butter Chicken" 
-         style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
-  </div>
-  
-      
-      <section class="butter-chicken-detail">
-        <div class="container">
-            <div class="text-block">
-                <h2>Our Legendary <br> Butter Chicken</h2>
-                <p class="description">
-                    A timeless classic, and a cornerstone of our menu. Our authentic Butter Chicken (Murgh Makhani) features tender, charcoal-grilled chicken pieces simmered to perfection in our signature velvety tomato-cream sauce. Rich, flavorful, and made with love.
-                </p>
-            </div>
+        <br><br>
+        <button class="btn-primary">View Full Menu</button>
+    </header>
 
-            <div class="recipe-block">
-                <h3>Our Master Chef’s Secret Recipe</h3>
-                
-                <div class="recipe-content">
-                    <div class="ingredients">
-                        <h4>Key Ingredients:</h4>
-                        <ul>
-                            <li><strong>Chicken:</strong> Boneless thigh pieces (800g), yogurt marinade, tandoori spices.</li>
-                            <li><strong>Sauce Base:</strong> Ripe tomatoes (1kg), ginger-garlic paste, cashews (50g, soaked).</li>
-                            <li><strong>Richness:</strong> Fresh cream (100ml), butter (50g), olive oil.</li>
-                            <li><strong>Spices:</strong> Kasoori Methi (dried fenugreek leaves), Garam Masala, Kashmiri Chili powder, cardamom.</li>
-                            <li><strong>Balance:</strong> Sugar/honey (1 tsp), salt to taste.</li>
-                        </ul>
-                    </div>
+    <section class="butter-chicken-detail">
+        <h2>Our Legendary Butter Chicken</h2>
+        <p>Tender chicken simmered in a velvety tomato-cream sauce.</p>
 
-                    <div class="steps">
-                        <h4>Simple Method (Restaurant Style):</h4>
-                        <ol>
-                            <li><strong>Marinate:</strong> Coat chicken in yogurt and spices for at least 4 hours. Grill in a tandoor or pan-sear until charred.</li>
-                            <li><strong>Sauce:</strong> Sauté ginger-garlic paste, add tomatoes and cashews. Cook until mushy. Blend and strain for a smooth base.</li>
-                            <li><strong>Build:</strong> Heat butter and oil. Add spices, then the strained tomato base. Simmer.</li>
-                            <li><strong>Combine:</strong> Add grilled chicken to the sauce. Stir in cream and Kasoori Methi. Cook for another 5 minutes on low.</li>
-                            <li><strong>Serve:</strong> Garnish with cream and coriander. Best served with Naan or Jeera Rice.</li>
-                        </ul>
-                    </div>
+        <div class="recipe-block">
+            <h3>Master Chef’s Secret Recipe</h3>
+            <div class="recipe-content">
+                <div class="ingredients">
+                    <h4>Key Ingredients</h4>
+                    <ul>
+                        <li>800g Chicken Thighs</li>
+                        <li>Fresh Cream & Butter</li>
+                        <li>Kasoori Methi & Spices</li>
+                    </ul>
+                </div>
+                <div class="steps">
+                    <h4>Quick Method</h4>
+                    <p>Marinate, Grill, Simmer in makhani gravy, and finish with cream.</p>
                 </div>
             </div>
         </div>
-      </section>
-  
-
-    <header class="hero">
-        <span class="badge">New Menu Available!</span>
-        <h1>Welcome to Food Heaven Where <br> Flavor Meets Excellence!</h1>
-        <button class="btn-primary">View Menu</button>
-        <div class="hero-image-container">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Platter of food">
-        </div>
-    </header>
+    </section>
 
     <section class="features">
         <div class="features-content">
-            <h2>A healthier way now has <br> a seat at the table.</h2>
-            <p>Your journey to delicious and healthy starts here.</p>
-            <ul>
-                <li>✓ Fresh ingredients sourced daily</li>
-                <li>✓ Expertly crafted by top chefs</li>
-                <li>✓ Seasonal flavors for every palate</li>
-            </ul>
-            <button class="btn-primary">View More</button>
+            <h2>A healthier way at the table.</h2>
+            <p>Fresh ingredients sourced daily by top chefs.</p>
+            <button class="btn-primary">About Us</button>
         </div>
         <div class="features-grid">
             <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Healthy food">
         </div>
-    </section> 
+    </section>
 
     <section class="menu-previews">
-        <h3>We're always here for you</h3>
+        <h3>Menu Highlights</h3>
         <div class="card-container">
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1547050605-2f2670356708?auto=format&fit=crop&w=300&q=80" alt="Breakfast">
                 <h4>Breakfast Cravings</h4>
-                <button class="btn-small">Book a Table</button>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80" alt="Lunch">
-                <h4>Lunch Bites</h4>
-                <button class="btn-small">Book a Table</button>
             </div>
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80" alt="Dinner">
                 <h4>Dinner Madness</h4>
-                <button class="btn-small">Book a Table</button>
             </div>
         </div>
     </section>
 
 </body>
-</html>
+          </html>
+          

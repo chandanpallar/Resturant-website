@@ -6,6 +6,15 @@
     <title>Food Heaven | Butter Chicken Special</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        .menu-previews .card img {
+    /* Purani lines agar hain toh unhe hata dein aur ye daalein: */
+    width: 100%;       /* Image apne container ki 100% width legi */
+    height: 180px;     /* Sabhi images ki height ek jaisi rakhegi, ise aap badal sakte hain */
+    object-fit: cover; /* Sabse zaroori: Image stretch ya katne ki jagah center mein fit hogi */
+    border-radius: 10px; /* Optional: Thodi rounding ke liye */
+    display: block;    
+        }
+        
         /* How It Works Styling */
 .how-it-works { padding: 60px 5%; text-align: center; background: var(--cream); }
 .steps-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }

@@ -3,49 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Heaven | Butter Chicken Special</title>
+    <title>Food Heaven | Fixed Mobile View</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        .menu-previews .card img {
-    /* Purani lines agar hain toh unhe hata dein aur ye daalein: */
-    width: 100%;       /* Image apne container ki 100% width legi */
-    height: 180px;     /* Sabhi images ki height ek jaisi rakhegi, ise aap badal sakte hain */
-    object-fit: cover; /* Sabse zaroori: Image stretch ya katne ki jagah center mein fit hogi */
-    border-radius: 10px; /* Optional: Thodi rounding ke liye */
-    display: block;    
-        }
-        
-        /* How It Works Styling */
-.how-it-works { padding: 60px 5%; text-align: center; background: var(--cream); }
-.steps-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
-.step-card { background: #efebe4; padding: 20px; border-radius: 15px; width: 220px; text-align: left; border: 1px solid #ddd; }
-.shape { width: 100%; height: 150px; background: #ddd; margin-bottom: 15px; overflow: hidden; }
-.shape img { width: 100%; height: 100%; object-fit: cover; }
-
-/* Masking Shapes (Image ki tarah dikhne ke liye) */
-.star-shape { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
-.heart-shape { clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'); transform: scale(5); transform-origin: top; } /* Note: Path complex hai, simple border-radius bhi use kar sakte hain */
-.oval-shape { border-radius: 50% 20% 50% 20%; }
-
-/* Testimonial Section */
-.testimonial { background: #e67e22; color: white; padding: 80px 10%; display: flex; align-items: center; gap: 50px; }
-.quote-text { font-size: 1.5rem; font-style: italic; font-family: 'Playfair Display'; }
-
-/* Book Now Section */
-.book-now { text-align: center; padding: 80px 5%; }
-
-/* Footer */
-.footer { background: #fdf7ed; padding: 60px 10% 20px; border-top: 1px solid #eee; }
-.footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
-.footer-col h4 { margin-bottom: 20px; }
-.footer-bottom { text-align: center; margin-top: 40px; font-size: 0.8rem; border-top: 1px solid #ddd; padding-top: 20px; }
-
-/* Mobile view for Footer and Testimonial */
-@media (max-width: 768px) {
-    .testimonial { flex-direction: column; text-align: center; }
-    .footer-grid { flex-direction: column; }
-}
-        
         :root {
             --primary: #004d40;
             --secondary: #f9bc4d;
@@ -58,7 +18,7 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--cream);
             color: var(--text);
-            overflow-x: hidden; /* Mobile par side scroll rokne ke liye */
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
@@ -74,24 +34,12 @@
             padding: 15px 5%;
             background: white;
         }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
+        .nav-links { list-style: none; display: flex; gap: 20px; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: bold; }
 
         /* --- Hero Section --- */
-        .hero {
-            text-align: center;
-            padding: 40px 5%;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin: 20px 0;
-        }
-
+        .hero { text-align: center; padding: 40px 5%; }
+        .hero h1 { font-size: 2.5rem; margin: 20px 0; }
         .hero-image-container img {
             width: 100%;
             max-width: 800px;
@@ -100,113 +48,55 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
-        .badge {
-            background: var(--secondary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        /* --- Butter Chicken Section --- */
-        .butter-chicken-detail {
-            padding: 60px 5%;
-            background-color: white;
-        }
-
-        .recipe-content {
-            display: flex;
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .recipe-block {
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        /* --- Features (Yellow) --- */
-        .features {
-            background-color: var(--secondary);
-            display: flex;
-            padding: 60px 5%;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .features-content { flex: 1; }
-        .features-grid img { width: 100%; border-radius: 15px; }
-
-        /* --- Menu Cards --- */
-        .menu-previews {
-            text-align: center;
-            padding: 60px 5%;
-        }
-
-        .card-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap; /* Card ko line change karne dega */
-        }
-
+        /* --- MENU CARDS FIX --- */
+        .menu-previews { text-align: center; padding: 60px 5%; }
+        .card-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        
         .card {
             background: white;
-            padding: 15px;
+            padding: 0; /* Card ke andar padding 0 taaki image chipak ke aaye */
             border-radius: 15px;
             width: 280px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden; /* Image corners round karne ke liye */
+            padding-bottom: 20px;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
+        .card img {
+            width: 100%;
+            height: 200px; /* Sabhi images ki height barabar */
+            object-fit: cover; /* Image kategi nahi, center dikhegi */
+            display: block;
         }
 
-        /* ========================================== */
-        /* MOBILE VIEW MODIFICATIONS (Media Queries)  */
-        /* ========================================== */
+        .card h4 { margin: 15px 0 5px; }
+
+        /* --- HOW IT WORKS SHAPES --- */
+        .how-it-works { padding: 60px 5%; text-align: center; }
+        .steps-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+        .step-card { background: #efebe4; padding: 20px; border-radius: 15px; width: 220px; text-align: left; }
+        .shape { width: 100%; height: 150px; margin-bottom: 15px; overflow: hidden; }
+        .shape img { width: 100%; height: 100%; object-fit: cover; }
+        .star-shape { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+
+        /* --- Testimonial --- */
+        .testimonial { background: #e67e22; color: white; padding: 60px 10%; display: flex; align-items: center; gap: 30px; }
+        .quote-text { font-size: 1.2rem; font-style: italic; }
+
+        /* --- Footer --- */
+        .footer { background: #fdf7ed; padding: 40px 10%; border-top: 1px solid #eee; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+
+        /* --- MOBILE VIEW --- */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                padding: 0;
-                font-size: 0.9rem;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem; /* Font chhota kiya */
-            }
-
-            .features {
-                flex-direction: column; /* Yellow section stack ho jayega */
-                text-align: center;
-            }
-
-            .recipe-content {
-                flex-direction: column; /* Recipe ingredients aur steps stack ho jayenge */
-                gap: 20px;
-            }
-
-            .card {
-                width: 100%; /* Mobile par cards poori width lenge */
-                max-width: 350px;
-            }
-
-            .btn-outline {
-                width: 100%;
-            }
+            .navbar { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 1.8rem; }
+            .card { width: 100%; max-width: 350px; }
+            .card img { height: 250px; } /* Mobile par card bada hota hai toh image thodi badi */
+            .testimonial { flex-direction: column; text-align: center; }
         }
+
+        .btn-primary { background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -222,78 +112,40 @@
     </nav>
 
     <header class="hero">
-        <span class="badge">Classic Favorite!</span>
+        <span style="background:var(--secondary); padding:5px 15px; border-radius:20px; font-size:0.8rem; font-weight:bold;">Classic Favorite!</span>
         <h1>Experience the Best <br> <span style="color:var(--secondary); font-style:italic;">Butter Chicken</span> in Town</h1>
-        
         <div class="hero-image-container">
             <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f47b636-6e7e-4754-86e4-f5944b3e884c_2463x2516.jpeg" alt="Butter Chicken">
         </div>
-        <br><br>
+        <br>
         <button class="btn-primary">View Full Menu</button>
     </header>
 
-    <section class="butter-chicken-detail">
-        <h2>Our Legendary Butter Chicken</h2>
-        <p>Tender chicken simmered in a velvety tomato-cream sauce.</p>
-
-        <div class="recipe-block">
-            <h3>Master Chef’s Secret Recipe</h3>
-            <div class="recipe-content">
-                <div class="ingredients">
-                    <h4>Key Ingredients</h4>
-                    <ul>
-                        <li>800g Chicken Thighs</li>
-                        <li>Fresh Cream & Butter</li>
-                        <li>Kasoori Methi & Spices</li>
-                    </ul>
-                </div>
-                <div class="steps">
-                    <h4>Quick Method</h4>
-                    <p>Marinate, Grill, Simmer in makhani gravy, and finish with cream.</p>
-                </div>
+    <section class="menu-previews">
+        <h3>Menu Highlights</h3>
+        <div class="card-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=500&q=80" alt="Breakfast">
+                <h4>Breakfast Cravings</h4>
+                <p>Light meal • 3 varieties</p>
+                <button class="btn-primary">Book a Table</button>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" alt="Lunch">
+                <h4>Lunch Bites</h4>
+                <p>Spicy meal • Beverage included</p>
+                <button class="btn-primary">Book a Table</button>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80" alt="Dinner">
+                <h4>Dinner Madness</h4>
+                <p>Full meal • Special dessert</p>
+                <button class="btn-primary">Book a Table</button>
             </div>
         </div>
     </section>
 
-    <section class="features">
-        <div class="features-content">
-            <h2>A healthier way at the table.</h2>
-            <p>Fresh ingredients sourced daily by top chefs.</p>
-            <button class="btn-primary">About Us</button>
-        </div>
-        <div class="features-grid">
-            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Healthy food">
-        </div>
-    </section>
-
-    <section class="menu-previews">
-    <h3>Menu Highlights</h3>
-    <div class="card-container">
-        
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=500&q=80" alt="Breakfast">
-            <h4>Breakfast Cravings</h4>
-            <p>Light meal • 3 varieties</p>
-            <button class="btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Book a Table</button>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" alt="Lunch">
-            <h4>Lunch Bites</h4>
-            <p>Spicy meal • Beverage included</p>
-            <button class="btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Book a Table</button>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80" alt="Dinner">
-            <h4>Dinner Madness</h4>
-            <p>Full meal • Special dessert</p>
-            <button class="btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Book a Table</button>
-        </div>
-
-    </div>
-</section>
-        <section class="how-it-works">
+    <section class="how-it-works">
         <h3>How Does it Works</h3>
         <div class="steps-container">
             <div class="step-card">
@@ -302,40 +154,24 @@
                 <h4>Browse Our Menu</h4>
             </div>
             <div class="step-card">
-                <div class="shape oval-shape"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300" alt="Find"></div>
+                <div class="shape"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300" style="border-radius: 50% 20%" alt="Find"></div>
                 <span>-02</span>
                 <h4>Find Favorite Food</h4>
             </div>
             <div class="step-card">
-                <div class="shape cloud-shape"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=300" alt="Book"></div>
+                <div class="shape"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=300" style="border-radius: 15px" alt="Book"></div>
                 <span>-03</span>
                 <h4>Book a Table</h4>
-            </div>
-            <div class="step-card">
-                <div class="shape heart-shape"><img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=300" alt="Enjoy"></div>
-                <span>-04</span>
-                <h4>Enjoy Meal</h4>
             </div>
         </div>
     </section>
 
     <section class="testimonial">
-        <div class="testimonial-content">
-            <p class="quote-text">"I love Food Heaven because it allows me to show my daughters how flavor meets tradition. Every order is a source of pride, and the savings are extraordinary!"</p>
-            <div class="user-info">
-                <strong>Brooklyn Simmons</strong>
-                <p>Loyal Foodie</p>
-            </div>
+        <p class="quote-text">"I love Food Heaven because it allows me to show my daughters how flavor meets tradition."</p>
+        <div class="user-info">
+            <strong>Brooklyn Simmons</strong>
+            <p>Loyal Foodie</p>
         </div>
-        <div class="testimonial-images">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400" alt="User">
-        </div>
-    </section>
-
-    <section class="book-now">
-        <h3>Don’t Wait – Book Now!</h3>
-        <p>Experience the treasures of authentic spices and home-style cooking.</p>
-        <button class="btn-primary">Book a Table 🗓️</button>
     </section>
 
     <footer class="footer">
@@ -343,25 +179,16 @@
             <div class="footer-col">
                 <h4>Contact</h4>
                 <p>📞 602-774-4735</p>
-                <p>📍 11022 South 51st Street, AZ</p>
                 <p>✉️ hi@foodheaven.com</p>
             </div>
             <div class="footer-col">
                 <h4>Navigate</h4>
-                <p>Home</p><p>Menu</p><p>About</p>
+                <p>Home | Menu | About</p>
             </div>
-            <div class="footer-col">
-                <h4>Follow Us</h4>
-                <p>Facebook</p><p>Instagram</p><p>Twitter</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Food Heaven | All rights reserved.</p>
         </div>
     </footer>
-    
-
 
 </body>
-          </html>
+</html>
+
           

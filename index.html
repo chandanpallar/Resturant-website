@@ -80,8 +80,79 @@
         .star-shape { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
 
         /* --- Testimonial --- */
-        .testimonial { background: #e67e22; color: white; padding: 60px 10%; display: flex; align-items: center; gap: 30px; }
-        .quote-text { font-size: 1.2rem; font-style: italic; }
+        /* --- Professional Testimonial CSS --- */
+.testimonial-section {
+    padding: 100px 8%;
+    background-color: var(--white); /* White background for contrast */
+    text-align: center;
+}
+
+.testimonial-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonial-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.quote-block {
+    flex: 2;
+    background: var(--cream); /* Soft cream background for the quote */
+    padding: 40px;
+    border-radius: 20px;
+    text-align: left;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #444;
+    line-height: 1.6;
+}
+
+.user-block {
+    flex: 1;
+    text-align: center;
+}
+
+/* YAHAN FIX HAI: Image ab box mein fit hogi */
+.user-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 3px solid white; /* Extra white border for premium look */
+}
+
+.user-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Image kategi nahi, perfect fit hogi */
+    object-position: center; /* Image ka center part dikhayega */
+    display: block;
+}
+
+.user-info strong {
+    color: var(--primary);
+    display: block;
+    font-size: 1.1rem;
+}
+
+/* Mobile View for Testimonial */
+@media (max-width: 768px) {
+    .testimonial-content {
+        flex-direction: column; /* Mobile par upar-niche align karega */
+    }
+}
+
 
         /* --- Footer --- */
         .footer { background: #fdf7ed; padding: 40px 10%; border-top: 1px solid #eee; }

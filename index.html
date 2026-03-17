@@ -104,17 +104,78 @@
 /* Permanent Heart Shape Fix using Border Radius */
 /* Permanent Heart Shape Fix using Border Radius */
 .heart-wrap {
+/* Sabse aasaan aur perfect heart shape */
+.enjoy-meal-wrapper {
     width: 100%;
     height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 20px;
 }
 
-.heart-wrap svg {
-    width: 160px; /* Heart ka size yahan se control karein */
-    height: 160px;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); /* Professional shadow */
+.heart-css {
+    background-color: white; /* Border jaisa dikhega */
+    height: 100px;
+    width: 100px;
+    position: relative;
+    transform: rotate(-45deg);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 5px; /* Thoda sa soft corner niche ka */
+    overflow: visible; /* Zaroori hai circular corners ke liye */
+}
+
+/* Heart ke do "kaano" (circles) ke liye */
+.heart-css::before,
+.heart-css::after {
+    content: "";
+    background-color: white;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+}
+
+.heart-css::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart-css::after {
+    left: 50px;
+    top: 0;
+}
+
+/* Image ko heart ke andar set karne ke liye */
+.heart-css img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(45deg) scale(1.4); /* Image ko wapas seedha kiya */
+    z-index: 10;
+    clip-path: inherit;
+    /* Is trick se image heart shape ke andar 'mask' ho jayegi */
+    border-radius: 0 0 5px 0;
+}
+
+/* Image ko circles ke upar bhi dikhane ke liye masking trick */
+.heart-css {
+    mask-image: radial-gradient(circle at 50% 50%, black 100%, transparent 100%); /* Browser fix */
+    -webkit-mask-image: none; /* Resetting pichhla logic */
+}
+
+/* Final cleanup: Agar upar wala image trick kaam na kare, toh ye foolproof hai */
+.heart-css {
+    border-radius: 0; /* Base square */
+    background: none; 
+}
+
+/* AGAR ABHI BHI PROBLEM HAI TOH SABSE SIMPLE: */
+.step-card .shape img[alt="Enjoy Meal"] {
+    clip-path: none;
+    border-radius: 50% 50% 0 0; /* Inverted teardrop look but better */
+    transform: none;
 }
 
 

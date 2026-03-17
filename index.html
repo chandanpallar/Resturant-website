@@ -8,3 +8,173 @@
   <p>Welcome to my website</p>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>:root {
+    --primary: #004d40;
+    --secondary: #f9bc4d;
+    --cream: #fdf7ed;
+    --text: #333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 10%;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin: 20px 0;
+}
+
+.hero-image-container img {
+    width: 80%;
+    margin-top: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Features Section */
+.features {
+    background-color: var(--secondary);
+    display: flex;
+    padding: 80px 10%;
+    align-items: center;
+    gap: 50px;
+}
+
+.features-content {
+    flex: 1;
+}
+
+/* Menu Cards */
+.menu-previews {
+    text-align: center;
+    padding: 80px 10%;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    width: 250px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Heaven | Flavor Meets Excellence</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Food Heaven</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="btn-outline">Order Now</button>
+    </nav>
+
+    <header class="hero">
+        <span class="badge">New Menu Available!</span>
+        <h1>Welcome to Food Heaven Where <br> Flavor Meets Excellence!</h1>
+        <button class="btn-primary">View Menu</button>
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Platter of food">
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="features-content">
+            <h2>A healthier way now has <br> a seat at the table.</h2>
+            <p>Your journey to delicious and healthy starts here.</p>
+            <ul>
+                <li>✓ Fresh ingredients sourced daily</li>
+                <li>✓ Expertly crafted by top chefs</li>
+                <li>✓ Seasonal flavors for every palate</li>
+            </ul>
+            <button class="btn-primary">View More</button>
+        </div>
+        <div class="features-grid">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Healthy food">
+        </div>
+    </section>
+
+    <section class="menu-previews">
+        <h3>We're always here for you</h3>
+        <div class="card-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1547050605-2f2670356708?auto=format&fit=crop&w=300&q=80" alt="Breakfast">
+                <h4>Breakfast Cravings</h4>
+                <button class="btn-small">Book a Table</button>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=300&q=80" alt="Lunch">
+                <h4>Lunch Bites</h4>
+                <button class="btn-small">Book a Table</button>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80" alt="Dinner">
+                <h4>Dinner Madness</h4>
+                <button class="btn-small">Book a Table</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

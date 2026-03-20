@@ -375,11 +375,10 @@ const dots = document.querySelectorAll(".dots span");
 
 // 2. Touch Start
 slides.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
     isDragging = true;
+    startX = e.touches[0].clientX;
     slides.style.transition = "none";
-
-    stopAutoSlide(); // 👉 swipe ke time auto band
+    stopAutoSlide();
 });
 
 // 3. Touch Move
@@ -409,9 +408,14 @@ slides.addEventListener("touchend", (e) => {
         else if (diff < 0 && index > 0) index--;
     }
 
-    isDragging = false;
+    isDragging = false; // 🔥 ensure reset
     updateSlider();
-    startAutoSlide(); // 👉 swipe ke baad auto wapas start
+    startAutoSlide();
+});
+    //5. Touch cancel
+    slides.addEventListener("touchcancel", () => {
+    isDragging = false;
+    slides.style.transition = "transform 0.5s ease";
 });
 
 // Update Slider

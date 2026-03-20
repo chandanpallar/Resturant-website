@@ -347,21 +347,32 @@ footer{
 <script>
 const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
-const totalSlides = slides.children.length;
 
-let index = 0;
+let index = 1;
 let startX = 0;
 let currentX = 0;
 let isDragging = false;
 let autoSlide;
 
-// Create dots
-for (let i = 0; i < totalSlides; i++) {
+// 🔥 STEP 1: Clone first & last
+const firstClone = slides.children[0].cloneNode(true);
+const lastClone = slides.children[slides.children.length - 1].cloneNode(true);
+
+slides.appendChild(firstClone);
+slides.insertBefore(lastClone, slides.firstChild);
+
+const totalSlides = slides.children.length;
+
+// 🔥 Set initial position (real first slide)
+slides.style.transform = `translateX(-100vw)`;
+
+// ✅ Create dots (original slides only)
+for (let i = 0; i < totalSlides - 2; i++) {
     let dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
 
     dot.addEventListener("click", () => {
-        index = i;
+        index = i + 1;
         updateSlider();
         resetAutoSlide();
     });
@@ -386,7 +397,6 @@ slides.addEventListener("touchmove", (e) => {
     currentX = e.touches[0].clientX;
     const diff = currentX - startX;
 
-    // move based on px (more stable than %)
     slides.style.transform = `translateX(calc(-${index * 100}vw + ${diff}px))`;
 }, { passive: true });
 
@@ -395,15 +405,11 @@ slides.addEventListener("touchend", () => {
     if (!isDragging) return;
 
     const diff = currentX - startX;
-
     slides.style.transition = "transform 0.4s ease";
 
     if (Math.abs(diff) > 50) {
-        if (diff < 0 && index < totalSlides - 1) {
-            index++;
-        } else if (diff > 0 && index > 0) {
-            index--;
-        }
+        if (diff < 0) index++;
+        else index--;
     }
 
     updateSlider();
@@ -411,21 +417,34 @@ slides.addEventListener("touchend", () => {
     startAutoSlide();
 });
 
-// UPDATE
-    
-    function updateSlider() {
+// 🔥 MAIN UPDATE
+function updateSlider() {
     slides.style.transform = `translateX(-${index * 100}vw)`;
 
     dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
+        dot.classList.toggle("active", i === index - 1);
     });
+}
+
+// 🔥 LOOP FIX (important part)
+slides.addEventListener("transitionend", () => {
+    if (index === totalSlides - 1) {
+        slides.style.transition = "none";
+        index = 1;
+        slides.style.transform = `translateX(-100vw)`;
     }
 
+    if (index === 0) {
+        slides.style.transition = "none";
+        index = totalSlides - 2;
+        slides.style.transform = `translateX(-${index * 100}vw)`;
+    }
+});
 
 // AUTO SLIDE
 function startAutoSlide() {
     autoSlide = setInterval(() => {
-        index = (index + 1) % totalSlides;
+        index++;
         updateSlider();
     }, 4000);
 }

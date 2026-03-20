@@ -62,7 +62,7 @@ footer{
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   position: relative;
-            touch-action: pan-y;
+            touch-action: none;
         }
         .slider::after {
   content: "";
@@ -381,15 +381,17 @@ slides.addEventListener("touchstart", (e) => {
 });
 
 // 3. Touch Move
-slides.addEventListener("touchmove", (e) => {
+    slides.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
+
+    e.preventDefault(); // 🔥 THIS IS THE MAIN FIX
 
     const currentX = e.touches[0].clientX;
     const diff = currentX - startX;
 
     const move = -index * 100 + (diff / window.innerWidth * 100);
     slides.style.transform = `translateX(${move}%)`;
-});
+}, { passive: false });
 
 // 4. Touch End
 slides.addEventListener("touchend", (e) => {

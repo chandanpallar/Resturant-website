@@ -349,64 +349,95 @@ footer{
 const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
 const totalSlides = slides.children.length;
+
 let index = 0;
-let isDragging = false; // Ye slider ka "on/off" switch hai
 let startX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
+let isDragging = false;
+let autoSlide;
 
 // 1. Create Dots
 for (let i = 0; i < totalSlides; i++) {
     let dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
+
     dot.addEventListener("click", () => {
         index = i;
         updateSlider();
+        resetAutoSlide();
     });
+
     dotsContainer.appendChild(dot);
 }
+
 const dots = document.querySelectorAll(".dots span");
 
-// 2. Touch Events for Swipe
-    slides.addEventListener('touchstart', (e) => {
+// 2. Touch Start
+slides.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
-    isDragging = true; // <--- Switch ON: Ab swipe shuru ho sakta hai
-    slides.style.transition = 'none'; 
+    isDragging = true;
+    slides.style.transition = "none";
+
+    stopAutoSlide(); // 👉 swipe ke time auto band
 });
 
+// 3. Touch Move
+slides.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
 
-slides.addEventListener('touchmove', (e) => {
     const currentX = e.touches[0].clientX;
     const diff = currentX - startX;
-    // Thoda sa hilaane par screen ko hilaane ki feel dene ke liye (Optional)
+
     const move = -index * 100 + (diff / window.innerWidth * 100);
     slides.style.transform = `translateX(${move}%)`;
 });
 
-slides.addEventListener('touchend', (e) => {
+// 4. Touch End
+slides.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
+
     const endX = e.changedTouches[0].clientX;
     const diff = startX - endX;
 
-    slides.style.transition = 'transform 0.5s ease-out';
+    slides.style.transition = "transform 0.5s ease";
 
-    if (Math.abs(diff) > 50) { // 50px se zyada swipe par change hoga
+    if (Math.abs(diff) > 50) {
         if (diff > 0 && index < totalSlides - 1) index++;
         else if (diff < 0 && index > 0) index--;
     }
-        isDragging = false; // <--- Switch OFF: Ab swipe khatam
+
+    isDragging = false;
     updateSlider();
+    startAutoSlide(); // 👉 swipe ke baad auto wapas start
 });
 
+// Update Slider
 function updateSlider() {
     slides.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+    });
 }
 
-// 3. Auto Play
-setInterval(() => {
-    index = (index + 1) % totalSlides;
-    updateSlider();
-}, 5000);
+// 5. Auto Slide (Smart)
+function startAutoSlide() {
+    autoSlide = setInterval(() => {
+        index = (index + 1) % totalSlides;
+        updateSlider();
+    }, 4000);
+}
+
+function stopAutoSlide() {
+    clearInterval(autoSlide);
+}
+
+function resetAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+}
+
+// Start initially
+startAutoSlide();
 </script>
 
 

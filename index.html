@@ -343,11 +343,15 @@ footer{
 </footer>
 <script>
 let index = 0;
+let startX = 0;
+let isDragging = false;
+
 const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
-const totalSlides = slides.children.length;
+const allSlides = slides.children;
+const totalSlides = allSlides.length;
 
-// 1. Create Dots automatically
+// 1. Dots setup
 for (let i = 0; i < totalSlides; i++) {
     let dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
@@ -357,46 +361,65 @@ for (let i = 0; i < totalSlides; i++) {
     });
     dotsContainer.appendChild(dot);
 }
-
 const dots = document.querySelectorAll(".dots span");
 
-// 2. Update Slider Function
+// 2. Update Function
 function updateSlider() {
+    slides.style.transition = "transform 0.5s ease-out";
     slides.style.transform = `translateX(-${index * 100}%)`;
-    // Update dots classes
+    
+    // Update Active Dot
     dots.forEach((dot, i) => {
         dot.classList.toggle("active", i === index);
     });
 }
 
-// 3. Touch/Swipe Logic
-let startX = 0;
+// 3. Touch Events (For Mobile Swipe)
 slides.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
-});
+    isDragging = true;
+    slides.style.transition = "none"; // Dragging ke waqt transition band
+}, {passive: true});
+
+slides.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = startX - currentX;
+    
+    // Agar user horizontal swipe kar raha hai toh page scroll roko
+    if (Math.abs(diff) > 10) {
+        // slides.style.transform = `translateX(calc(-${index * 100}% - ${diff}px))`; 
+        // Upar wali line manual drag feel degi, par simple swipe ke liye zaruri nahi
+    }
+}, {passive: true});
 
 slides.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
     let endX = e.changedTouches[0].clientX;
     let diff = startX - endX;
 
-    if (Math.abs(diff) > 50) { // Minimum swipe distance
-        if (diff > 0) index++; // Swipe Left
-        else index--;          // Swipe Right
-
-        // Infinite loop logic
-        if (index >= totalSlides) index = 0;
-        if (index < 0) index = totalSlides - 1;
-
-        updateSlider();
+    // Threshold: Agar 50px se zyada swipe kiya toh change karo
+    if (Math.abs(diff) > 50) {
+        if (diff > 0 && index < totalSlides - 1) {
+            index++;
+        } else if (diff < 0 && index > 0) {
+            index--;
+        }
     }
+    
+    isDragging = false;
+    updateSlider();
 });
 
-// 4. Auto-play (Optional but recommended)
+// 4. Auto-play (Har 4 second mein)
 setInterval(() => {
-    index = (index + 1) % totalSlides;
-    updateSlider();
-}, 5000); // Har 5 second mein change hoga
+    if (!isDragging) {
+        index = (index + 1) % totalSlides;
+        updateSlider();
+    }
+}, 4000);
 </script>
+
 
 
 </body>

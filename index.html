@@ -343,56 +343,61 @@ footer{
 </footer>
 <script>
 let index = 0;
-let startX = 0;
-
 const slides = document.getElementById("slides");
+const dotsContainer = document.getElementById("dots");
+const totalSlides = slides.children.length;
 
-// SHOW SLIDE
-function showSlide() {
-  slides.style.transform = `translateX(-${index * 100}%)`;
+// 1. Create Dots automatically
+for (let i = 0; i < totalSlides; i++) {
+    let dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+        index = i;
+        updateSlider();
+    });
+    dotsContainer.appendChild(dot);
 }
 
-// SWIPE START
+const dots = document.querySelectorAll(".dots span");
+
+// 2. Update Slider Function
+function updateSlider() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    // Update dots classes
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+    });
+}
+
+// 3. Touch/Swipe Logic
+let startX = 0;
 slides.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
+    startX = e.touches[0].clientX;
 });
 
-// SWIPE END
 slides.addEventListener("touchend", (e) => {
-  let endX = e.changedTouches[0].clientX;
-  let diff = startX - endX;
+    let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
 
-  if (diff > 50) index++;
-  else if (diff < -50) index--;
+    if (Math.abs(diff) > 50) { // Minimum swipe distance
+        if (diff > 0) index++; // Swipe Left
+        else index--;          // Swipe Right
 
-  if (index < 0) index = slides.children.length - 1;
-  if (index >= slides.children.length) index = 0;
+        // Infinite loop logic
+        if (index >= totalSlides) index = 0;
+        if (index < 0) index = totalSlides - 1;
 
-  showSlide();
+        updateSlider();
+    }
 });
-    const dotsContainer = document.getElementById("dots");
 
-// create dots
-for (let i = 0; i < slides.children.length; i++) {
-  let dot = document.createElement("span");
-  if (i === 0) dot.classList.add("active");
-  dotsContainer.appendChild(dot);
-}
-
-let dots = document.querySelectorAll(".dots span");
-
-dots.forEach((dot, i) => {
-  dot.addEventListener("click", () => {
-    index = i;
-    showSlide();
-  });
-});
-// showSlide update
-function showSlide() {
-  slides.style.transform = `translateX(-${index * 100}%)`;
-  updateDots();
-}
+// 4. Auto-play (Optional but recommended)
+setInterval(() => {
+    index = (index + 1) % totalSlides;
+    updateSlider();
+}, 5000); // Har 5 second mein change hoga
 </script>
+
 
 </body>
                     </html>

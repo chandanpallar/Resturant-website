@@ -6,6 +6,7 @@
     <title>Food Heaven | Final Steps Fixed</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+    
         /* FOOTER */
 footer{
   background:#111;color:#fff;
@@ -53,6 +54,23 @@ footer{
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
+        .slider {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.slides img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
         /* --- MENU CARDS --- */
         .menu-previews { text-align: center; padding: 60px 5%; }
         .card-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
@@ -186,49 +204,21 @@ footer{
             <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f47b636-6e7e-4754-86e4-f5944b3e884c_2463x2516.jpeg" alt="Butter Chicken">
         </div>
     </header>
-    <div class="hero-image-container">
-            <img src="https://res.cloudinary.com/take-memories/images/f_auto,dpr_auto,q_auto,w_2000,c_fill,h_1200/om/wtfbpwrydhkqarm2gjur/kulinarische-highlights-und-traditionelle-gerichte-in-saudi-arabien" alt="nonveg rice kaju">
-        Traditional Saudi Cuisine
-    </div>
-    <div class="hero-image-container">
-            <img src="https://media.istockphoto.com/id/914008376/photo/indian-dish-of-spicy-hot-chicken-curry-in-red.jpg?s=612x612&w=0&k=20&c=vxFrP7rD0njsK7cSzZ126XPEwyK06AfpH8enVG_dKjI=" alt="Indian style chicken curry">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://img.freepik.com/free-photo/assortment-indian-dishes-platter_23-2152002848.jpg?semt=ais_hybrid&w=740&q=80" alt="assortment of Indian dishes served together on a platter">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://cdn.pixabay.com/photo/2024/01/23/10/02/thali-8527370_1280.jpg" alt="Indian Thali">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://img.freepik.com/premium-photo/tandoori-chicken-indian-food-surrounded-by-spices-india-background_249848-8827.jpg?semt=ais_hybrid&w=740&q=80" alt="Tandoori Chicken">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://png.pngtree.com/thumb_back/fw800/background/20260125/pngtree-traditional-indian-kheer-dessert-in-glass-bowl-with-saffron-almonds-and-image_21213829.webp" alt="Dessert glass">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2019/03/Rabdi-Recipe.jpg" alt="sweet">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1b-l4iNxYXNBJmarMshMp6cosXF0sYa60rH8pdtf5y58v1ZMmOPLNHKFH&s=10" alt="Sweet">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://pixabay.com/photos/indian-restaurant-food-dish-8281116/" alt="Corn Tadka">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://pixabay.com/photos/biryani-rice-food-indian-cuisine-1141444/" alt="Rice">
-        
-    </div>
-    <div class="hero-image-container">
-            <img src="https://pixabay.com/photos/parippu-vada-food-dish-sri-lankan-6305691/" alt="Bada">
-        
+    <div class="slider">
+  <div class="slides" id="slides">
+
+    <img src="https://res.cloudinary.com/take-memories/images/f_auto,dpr_auto,q_auto,w_2000,c_fill,h_1200/om/wtfbpwrydhkqarm2gjur/kulinarische-highlights-und-traditionelle-gerichte-in-saudi-arabien" alt="nonveg rice kaju">
+    <img src="https://media.istockphoto.com/id/914008376/photo/indian-dish-of-spicy-hot-chicken-curry-in-red.jpg?s=612x612&w=0&k=20&c=vxFrP7rD0njsK7cSzZ126XPEwyK06AfpH8enVG_dKjI=" alt="Indian style chicken curry">
+   <img src="https://img.freepik.com/free-photo/assortment-indian-dishes-platter_23-2152002848.jpg?semt=ais_hybrid&w=740&q=80" alt="assortment of Indian dishes served together on a platter">
+    <img src="https://cdn.pixabay.com/photo/2024/01/23/10/02/thali-8527370_1280.jpg" alt="Indian Thali">
+    <img src="https://img.freepik.com/premium-photo/tandoori-chicken-indian-food-surrounded-by-spices-india-background_249848-8827.jpg?semt=ais_hybrid&w=740&q=80" alt="Tandoori Chicken">
+    <img src="https://png.pngtree.com/thumb_back/fw800/background/20260125/pngtree-traditional-indian-kheer-dessert-in-glass-bowl-with-saffron-almonds-and-image_21213829.webp" alt="Dessert glass">
+    <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2019/03/Rabdi-Recipe.jpg" alt="sweet">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1b-l4iNxYXNBJmarMshMp6cosXF0sYa60rH8pdtf5y58v1ZMmOPLNHKFH&s=10" alt="Sweet">
+    <img src="https://pixabay.com/photos/indian-restaurant-food-dish-8281116/" alt="Corn Tadka">
+     <img src="https://pixabay.com/photos/biryani-rice-food-indian-cuisine-1141444/" alt="Rice">
+      <img src="https://pixabay.com/photos/parippu-vada-food-dish-sri-lankan-6305691/" alt="Bada">
+  </div>
     </div>
 
     <section class="how-it-works">

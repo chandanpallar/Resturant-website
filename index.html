@@ -59,22 +59,23 @@ footer{
     font-size: 32px;
     font-weight: 600;
     color: #2b2b2b;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     position: relative;
     margin-bottom: 30px;
     line-height: 1.2;
 }
 
-/* Elegant underline accent */.menu-title::after {
+/* Elegant underline accent */
+        .menu-title::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: -10px;
-    width: 80px; /* thoda bada karo */
+    width: 90px;
     height: 4px;
-    background: #f4b400;
-    border-radius: 3px;
-}
+    background: linear-gradient(90deg, #f4b400, #ffcc33);
+    border-radius: 10px;
+        }
 
         .menu-title.center {
     text-align: center;

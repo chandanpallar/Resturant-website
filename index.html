@@ -53,6 +53,36 @@ footer{
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
+        /* CSS */
+.menu-title {
+    font-family: 'Playfair Display', serif; /* Premium font */
+    font-size: 32px;
+    font-weight: 600;
+    color: #2c2c2c;
+    letter-spacing: 1px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Elegant underline accent */
+.menu-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 60px;
+    height: 3px;
+    background-color: #f4b400; /* Yellow accent */
+    border-radius: 2px;
+}
+        .menu-title.center {
+    text-align: center;
+}
+
+.menu-title.center::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
 
         .slider {
   width: 100%;
@@ -246,7 +276,7 @@ footer{
             <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f47b636-6e7e-4754-86e4-f5944b3e884c_2463x2516.jpeg" alt="Butter Chicken">
         </div>
     </header>
-    Menu highlights 
+<h2 class="menu-title">Most Loved Dishes</h2>
     <div class="slider">
   <div class="slides" id="slides">
 

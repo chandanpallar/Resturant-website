@@ -62,6 +62,7 @@ footer{
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   position: relative;
+            touch-action: pan-y;
         }
         .slider::after {
   content: "";
@@ -349,6 +350,7 @@ const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
 const totalSlides = slides.children.length;
 let index = 0;
+let isDragging = false; // Ye slider ka "on/off" switch hai
 let startX = 0;
 let currentTranslate = 0;
 let prevTranslate = 0;
@@ -366,10 +368,12 @@ for (let i = 0; i < totalSlides; i++) {
 const dots = document.querySelectorAll(".dots span");
 
 // 2. Touch Events for Swipe
-slides.addEventListener('touchstart', (e) => {
+    slides.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
-    slides.style.transition = 'none'; // Drag karte waqt animation band
+    isDragging = true; // <--- Switch ON: Ab swipe shuru ho sakta hai
+    slides.style.transition = 'none'; 
 });
+
 
 slides.addEventListener('touchmove', (e) => {
     const currentX = e.touches[0].clientX;
@@ -389,6 +393,7 @@ slides.addEventListener('touchend', (e) => {
         if (diff > 0 && index < totalSlides - 1) index++;
         else if (diff < 0 && index > 0) index--;
     }
+        isDragging = false; // <--- Switch OFF: Ab swipe khatam
     updateSlider();
 });
 

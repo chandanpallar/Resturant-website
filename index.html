@@ -89,9 +89,13 @@ footer{
   flex-shrink: 0;
   transition: transform 0.5s;
 }
+
+        
         .dots {
   text-align: center;
   margin-top: 10px;
+  position: relative;
+  z-index: 2;
 }
 
 .dots span {
@@ -372,12 +376,14 @@ for (let i = 0; i < slides.children.length; i++) {
   dotsContainer.appendChild(dot);
 }
 
-function updateDots() {
-  let dots = document.querySelectorAll(".dots span");
-  dots.forEach(dot => dot.classList.remove("active"));
-  dots[index].classList.add("active");
-}
+let dots = document.querySelectorAll(".dots span");
 
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    index = i;
+    showSlide();
+  });
+});
 // showSlide update
 function showSlide() {
   slides.style.transform = `translateX(-${index * 100}%)`;

@@ -299,27 +299,23 @@ footer{
 <footer>
   <p>© 2026 FoodHub</p>
 </footer>
-    <script>
+<script>
 let index = 0;
 let startX = 0;
 
 const slides = document.getElementById("slides");
 
+// SHOW SLIDE
 function showSlide() {
   slides.style.transform = `translateX(-${index * 100}%)`;
 }
 
-// AUTO SLIDE (3 sec)
-setInterval(() => {
-  index = (index + 1) % slides.children.length;
-  showSlide();
-}, 3000);
-
-// SWIPE
+// SWIPE START
 slides.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
 });
 
+// SWIPE END
 slides.addEventListener("touchend", (e) => {
   let endX = e.changedTouches[0].clientX;
   let diff = startX - endX;
@@ -332,7 +328,7 @@ slides.addEventListener("touchend", (e) => {
 
   showSlide();
 });
-    </script>
+</script>
 
 </body>
                     </html>

@@ -413,6 +413,16 @@ for (let i = 0; i < totalSlides - 2; i++) {
 
 const dots = document.querySelectorAll(".dots span");
 
+    function updateDots() {
+    let realIndex = index - 1;
+
+    if (index === 0) realIndex = totalSlides - 3;
+    if (index === totalSlides - 1) realIndex = 0;
+
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === realIndex);
+    });
+    }
 // TOUCH START
 slides.addEventListener("touchstart", (e) => {
     isDragging = true;
@@ -455,32 +465,20 @@ slides.addEventListener("touchend", () => {
 
 // 🔥 MAIN UPDATE
     function updateSlider() {
-    if (isAnimating) return; // 🔒 agar animation chal raha hai to ignore
+    if (isAnimating) return;
 
-    isAnimating = true; // 🔒 lock
+    isAnimating = true;
 
+    slides.style.transition = "transform 0.4s ease";
     slides.style.transform = `translateX(-${index * 100}vw)`;
 
-    // 🔥 real index fix
-    let realIndex = index - 1;
-
-    if (index === 0) {
-        realIndex = totalSlides - 3;
+    updateDots();
     }
-    if (index === totalSlides - 1) {
-        realIndex = 0;
-    }
-
-    dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === realIndex);
-    });
-}
-
 
 // 🔥 LOOP FIX (important part)
 slides.addEventListener("transitionend", () => {
 
-    // 🔁 Loop fix
+    // Loop fix
     if (index === totalSlides - 1) {
         slides.style.transition = "none";
         index = 1;
@@ -493,14 +491,9 @@ slides.addEventListener("transitionend", () => {
         slides.style.transform = `translateX(-${index * 100}vw)`;
     }
 
-    // 🔥 Correct dot logic
-    let realIndex = index - 1;
+    updateDots();
 
-    dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === realIndex);
-    });
-
-    // 🔓 Animation unlock (IMPORTANT)
+    // 🔓 ALWAYS unlock
     isAnimating = false;
 });
 
@@ -519,9 +512,10 @@ function stopAutoSlide() {
 function resetAutoSlide() {
     stopAutoSlide();
     startAutoSlide();
-}
+    }
 
-startAutoSlide();
+startAutoSlide();  // ✅ pehle
+
 </script>
 
 

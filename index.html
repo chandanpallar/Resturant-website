@@ -450,18 +450,33 @@ slides.addEventListener("touchend", () => {
 });
 
 // 🔥 MAIN UPDATE
-function updateSlider() {
-    isAnimating = false;
+    function updateSlider() {
+    if (isAnimating) return; // 🔒 agar animation chal raha hai to ignore
+
+    isAnimating = true; // 🔒 lock
+
     slides.style.transform = `translateX(-${index * 100}vw)`;
 
+    // 🔥 real index fix
+    let realIndex = index - 1;
+
+    if (index === 0) {
+        realIndex = totalSlides - 3;
+    }
+    if (index === totalSlides - 1) {
+        realIndex = 0;
+    }
+
     dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index - 1);
+        dot.classList.toggle("active", i === realIndex);
     });
 }
+
 
 // 🔥 LOOP FIX (important part)
 slides.addEventListener("transitionend", () => {
 
+    // 🔁 Loop fix
     if (index === totalSlides - 1) {
         slides.style.transition = "none";
         index = 1;
@@ -474,8 +489,17 @@ slides.addEventListener("transitionend", () => {
         slides.style.transform = `translateX(-${index * 100}vw)`;
     }
 
-    isAnimating = false; // 🔥 unlock
+    // 🔥 Correct dot logic
+    let realIndex = index - 1;
+
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === realIndex);
+    });
+
+    // 🔓 Animation unlock (IMPORTANT)
+    isAnimating = false;
 });
+
 // AUTO SLIDE
 function startAutoSlide() {
     autoSlide = setInterval(() => {

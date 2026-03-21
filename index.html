@@ -422,7 +422,11 @@ slides.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
 
     currentX = e.touches[0].clientX;
-    const diff = currentX - startX;
+    let diff = currentX - startX;
+
+    // 🔥 Limit drag distance (overswipe fix)
+    if (diff > 150) diff = 150;
+    if (diff < -150) diff = -150;
 
     slides.style.transform = `translateX(calc(-${index * 100}vw + ${diff}px))`;
 }, { passive: true });
@@ -434,9 +438,10 @@ slides.addEventListener("touchend", () => {
     const diff = currentX - startX;
     slides.style.transition = "transform 0.4s ease";
 
+    // 🔥 Clamp movement (sirf 1 slide move allowed)
     if (Math.abs(diff) > 50) {
-        if (diff < 0) index++;
-        else index--;
+        if (diff < 0) index = Math.min(index + 1, totalSlides - 1);
+        else index = Math.max(index - 1, 0);
     }
 
     updateSlider();
@@ -446,6 +451,7 @@ slides.addEventListener("touchend", () => {
 
 // 🔥 MAIN UPDATE
 function updateSlider() {
+    isAnimating = false;
     slides.style.transform = `translateX(-${index * 100}vw)`;
 
     dots.forEach((dot, i) => {
@@ -456,26 +462,20 @@ function updateSlider() {
 // 🔥 LOOP FIX (important part)
 slides.addEventListener("transitionend", () => {
 
-    // Last clone → real first
     if (index === totalSlides - 1) {
         slides.style.transition = "none";
         index = 1;
         slides.style.transform = `translateX(-100vw)`;
     }
 
-    // First clone → real last
     if (index === 0) {
         slides.style.transition = "none";
         index = totalSlides - 2;
         slides.style.transform = `translateX(-${index * 100}vw)`;
     }
 
-    // 🔥 DOTS FIX (IMPORTANT)
-    dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index - 1);
-    });
+    isAnimating = false; // 🔥 unlock
 });
-
 // AUTO SLIDE
 function startAutoSlide() {
     autoSlide = setInterval(() => {

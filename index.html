@@ -399,11 +399,15 @@ for (let i = 0; i < totalSlides - 2; i++) {
     if (i === 0) dot.classList.add("active");
 
     dot.addEventListener("click", () => {
-        index = i + 1;
-        updateSlider();
-        resetAutoSlide();
-    });
+    if (isAnimating) return; // 🔒 animation ke beech click ignore
 
+    slides.style.transition = "transform 0.4s ease"; // smooth move
+
+    index = i + 1; // 🔥 clone offset fix
+
+    updateSlider();
+    resetAutoSlide();
+});
     dotsContainer.appendChild(dot);
 }
 

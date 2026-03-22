@@ -6,6 +6,39 @@
     <title>Food Heaven | Final Steps Fixed</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        .logo {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  /* 🔥 Gradient text */
+  background: linear-gradient(45deg, #004d40, #f9bc4d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  will-change: transform;
+}
+
+/* 🔥 Glow shadow */
+.logo::after {
+  content: "🍽️ FOOD HEAVEN";
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  color: rgba(0, 0, 0, 0.15);
+  filter: blur(8px);
+}
+
+/* 🔥 Hover animation */
+.logo:hover {
+  transform: scale(1.1);
+  letter-spacing: 4px;
+  filter: drop-shadow(0 0 10px rgba(249,188,77,0.6));
+        }
     
         /* FOOTER */
 footer{

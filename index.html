@@ -380,7 +380,7 @@ let startX = 0;
 let currentX = 0;
 let isDragging = false;
 let autoSlide;
-
+let isAnimating = false;
 // 🔥 STEP 1: Clone first & last
 const firstClone = slides.children[0].cloneNode(true);
 const lastClone = slides.children[slides.children.length - 1].cloneNode(true);
@@ -391,7 +391,7 @@ slides.insertBefore(lastClone, slides.firstChild);
 const totalSlides = slides.children.length;
 
 // 🔥 Set initial position (real first slide)
-slides.style.transform = `translateX(-100vw)`;
+    slides.style.transform = `translateX(-${slides.clientWidth}px)`;
 
 // ✅ Create dots (original slides only)
 for (let i = 0; i < totalSlides - 2; i++) {
@@ -487,22 +487,19 @@ slides.addEventListener("touchend", () => {
 // 🔥 LOOP FIX (important part)
 slides.addEventListener("transitionend", () => {
 
-    // Loop fix
     if (index === totalSlides - 1) {
         slides.style.transition = "none";
         index = 1;
-        slides.style.transform = `translateX(-100vw)`;
+        slides.style.transform = `translateX(-${slides.clientWidth}px)`;
     }
 
     if (index === 0) {
         slides.style.transition = "none";
         index = totalSlides - 2;
-        slides.style.transform = `translateX(-${index * 100}vw)`;
+        slides.style.transform = `translateX(-${index * slides.clientWidth}px)`;
     }
 
     updateDots();
-
-    // 🔓 ALWAYS unlock
     isAnimating = false;
 });
 
@@ -523,8 +520,13 @@ function resetAutoSlide() {
     startAutoSlide();
     }
 
-startAutoSlide();  // ✅ pehle
+startAutoSlide();  // existing line
 
+// 🔥 FIX 4 (yahan paste karo)
+window.addEventListener("resize", () => {
+    slides.style.transition = "none";
+    slides.style.transform = `translateX(-${index * slides.clientWidth}px)`;
+});
 </script>
 
 

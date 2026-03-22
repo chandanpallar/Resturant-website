@@ -427,7 +427,15 @@ const dots = document.querySelectorAll(".dots span");
 slides.addEventListener("touchstart", (e) => {
     isDragging = true;
     startX = e.touches[0].clientX;
-    slides.style.transition = "none";
+
+    // 🔥 STEP 3 (IMPORTANT)
+    const style = window.getComputedStyle(slides);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    const currentTranslateX = matrix.m41;
+
+    slides.style.transform = `translateX(${currentTranslateX}px)`;
+
+    slides.style.transition = "none"; // animation off
     stopAutoSlide();
 });
 
@@ -438,11 +446,13 @@ slides.addEventListener("touchmove", (e) => {
     currentX = e.touches[0].clientX;
     let diff = currentX - startX;
 
-    // 🔥 Limit drag distance (overswipe fix)
-    if (diff > 150) diff = 150;
-    if (diff < -150) diff = -150;
+    // 🔥 STEP 4: limit drag
+    const maxDrag = 120;
+    if (diff > maxDrag) diff = maxDrag;
+    if (diff < -maxDrag) diff = -maxDrag;
 
-    slides.style.transform = `translateX(calc(-${index * 100}vw + ${diff}px))`;
+    // 🔥 PX based movement (important)
+    slides.style.transform = `translateX(${ -index * slides.clientWidth + diff }px)`;
 }, { passive: true });
 
 // TOUCH END
@@ -470,8 +480,7 @@ slides.addEventListener("touchend", () => {
     isAnimating = true;
 
     slides.style.transition = "transform 0.4s ease";
-    slides.style.transform = `translateX(-${index * 100}vw)`;
-
+    slides.style.transform = `translateX(${-index * slides.clientWidth}px)`;
     updateDots();
     }
 

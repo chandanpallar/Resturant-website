@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* POPUP BACKGROUND */
+/* POPUP always top */
 .popup {
   position: fixed;
   top: 0;
@@ -17,21 +18,16 @@
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9999; /* 🔥 highest */
 }
 
-/* POPUP BOX */
+/* Popup box */
 .popup-content {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  animation: popupFade 0.3s ease;
+  position: relative; /* 🔥 must */
+  z-index: 10000; /* 🔥 above everything */
 }
 
-/* CLOSE BUTTON */
+/* ❌ Button FIX */
 .close {
   position: absolute;
   top: 10px;
@@ -39,7 +35,14 @@
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
-  color: #333;
+  color: #000;
+  background: white; /* 🔥 add this */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .close:hover {
@@ -129,7 +132,8 @@ footer{
             align-items: center;
             padding: 15px 5%;
             background: white;
-        }
+            z-index: 1;
+            }
         .nav-links { list-style: none; display: flex; gap: 20px; padding: 0; }
         .nav-links a { text-decoration: none; color: var(--primary); font-weight: bold; }
 

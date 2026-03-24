@@ -147,10 +147,12 @@ footer{
         .slides {
   display: flex;
   width: 100%;
-}
-
+  will-change: transform; /* 🔥 performance boost */
+  transition: transform 0.4s ease;
+  transform: translate3d(0,0,0);
+        }
 .slides img {
-  width: 100vw;   /* 🔥 FIX: full screen width */
+  width: 100%;   /* 🔥 FIX: full screen width */
   height: 260px;
   object-fit: cover;
   flex-shrink: 0;
@@ -404,6 +406,7 @@ footer{
 const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
 
+let slideWidth = slides.children[0].clientWidth;
 let index = 1;
 let startX = 0;
 let currentX = 0;
@@ -420,7 +423,7 @@ slides.insertBefore(lastClone, slides.firstChild);
 const totalSlides = slides.children.length;
 
 // 🔥 Set initial position (real first slide)
-    slides.style.transform = `translateX(-${slides.clientWidth}px)`;
+    slides.style.transform = `translateX(-${slideWidth}px)`;
 
 // ✅ Create dots (original slides only)
 for (let i = 0; i < totalSlides - 2; i++) {
@@ -484,7 +487,7 @@ slides.addEventListener("touchmove", (e) => {
     if (diff < -maxDrag) diff = -maxDrag;
 
     // 🔥 PX based movement (important)
-    slides.style.transform = `translate3d(${ -index * slides.clientWidth + diff }px, 0, 0)`;
+    slides.style.transform = `translate3d(${ -index * slideWidth + diff }px, 0, 0)`;
 }, { passive: true });
 
 // TOUCH END
@@ -496,10 +499,9 @@ slides.addEventListener("touchend", () => {
 
     // 🔥 Clamp movement (sirf 1 slide move allowed)
     if (Math.abs(diff) > 50) {
-        if (diff < 0) index = Math.min(index + 1, totalSlides - 1);
-        else index = Math.max(index - 1, 0);
+    if (diff < 0) index++;
+    else index--;
     }
-
     updateSlider();
     isDragging = false;
     startAutoSlide();
@@ -512,7 +514,7 @@ slides.addEventListener("touchend", () => {
     isAnimating = true;
 
     slides.style.transition = "transform 0.4s ease";
-    slides.style.transform = `translateX(${-index * slides.clientWidth}px)`;
+    slides.style.transform = `translateX(${-index * slideWidth}px)`;
     updateDots();
     }
 
@@ -522,13 +524,13 @@ slides.addEventListener("transitionend", () => {
     if (index === totalSlides - 1) {
         slides.style.transition = "none";
         index = 1;
-        slides.style.transform = `translateX(-${slides.clientWidth}px)`;
+        slides.style.transform = `translateX(-${slideWidth}px)`;
     }
 
     if (index === 0) {
         slides.style.transition = "none";
         index = totalSlides - 2;
-        slides.style.transform = `translateX(-${index * slides.clientWidth}px)`;
+        slides.style.transform = `translateX(-${index * slideWidth}px)`;
     }
 
     updateDots();
@@ -567,7 +569,7 @@ startAutoSlide();
 // 🔥 FIX 4 (yahan paste karo)
 window.addEventListener("resize", () => {
     slides.style.transition = "none";
-    slides.style.transform = `translateX(-${index * slides.clientWidth}px)`;
+    slides.style.transform = `translateX(-${index * slideWidth}px)`;
 });
 </script>
 

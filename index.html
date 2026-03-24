@@ -402,18 +402,18 @@ footer{
 <footer>
   <p>© 2026 FoodHub</p>
 </footer>
-<script>
+    <script>
 const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
 
 let slideWidth = slides.children[0].clientWidth;
 let index = 1;
 let startX = 0;
-let currentX = 0;
 let isDragging = false;
 let autoSlide;
 let isAnimating = false;
-// 🔥 STEP 1: Clone first & last
+
+// 🔥 Clone first & last for infinite loop
 const firstClone = slides.children[0].cloneNode(true);
 const lastClone = slides.children[slides.children.length - 1].cloneNode(true);
 
@@ -422,131 +422,96 @@ slides.insertBefore(lastClone, slides.firstChild);
 
 const totalSlides = slides.children.length;
 
-// 🔥 Set initial position (real first slide)
-    slides.style.transform = `translateX(-${slideWidth}px)`;
+// Initial position
+slides.style.transform = `translateX(-${slideWidth}px)`;
 
-// ✅ Create dots (original slides only)
+// Create dots
 for (let i = 0; i < totalSlides - 2; i++) {
     let dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
-
     dot.addEventListener("click", () => {
-    if (isAnimating) return; // 🔒 animation ke beech click ignore
-
-    slides.style.transition = "transform 0.4s ease"; // smooth move
-
-    index = i + 1; // 🔥 clone offset fix
-
-    updateSlider();
-    resetAutoSlide();
-});
+        if (isAnimating) return;
+        index = i + 1;
+        updateSlider();
+        resetAutoSlide();
+    });
     dotsContainer.appendChild(dot);
 }
 
 const dots = document.querySelectorAll(".dots span");
 
-    function updateDots() {
+function updateDots() {
     let realIndex = index - 1;
-
-    if (index === 0) realIndex = totalSlides - 3;
-    if (index === totalSlides - 1) realIndex = 0;
+    if (index >= totalSlides - 1) realIndex = 0;
+    else if (index <= 0) realIndex = totalSlides - 3;
 
     dots.forEach((dot, i) => {
         dot.classList.toggle("active", i === realIndex);
     });
-    }
-// TOUCH START
+}
+
+// Touch Start
 slides.addEventListener("touchstart", (e) => {
+    if (isAnimating) return; // Block swipe if already moving
     isDragging = true;
     startX = e.touches[0].clientX;
-
-    const style = window.getComputedStyle(slides);
-
-    // 🔥 SAFE FIX
-    const matrix = new DOMMatrix(
-        style.transform === "none" ? "" : style.transform
-    );
-
-    const currentTranslateX = matrix.m41;
-
-    slides.style.transform = `translate3d(${currentTranslateX}px, 0, 0)`;
-    slides.style.transition = "none";
-
     stopAutoSlide();
+    slides.style.transition = "none";
 });
-// TOUCH MOVE
+
+// Touch Move
 slides.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-
-    currentX = e.touches[0].clientX;
-    let diff = currentX - startX;
-
-    // 🔥 STEP 4: limit drag
-    const maxDrag = 120;
-    if (diff > maxDrag) diff = maxDrag;
-    if (diff < -maxDrag) diff = -maxDrag;
-
-    // 🔥 PX based movement (important)
-    slides.style.transform = `translate3d(${ -index * slideWidth + diff }px, 0, 0)`;
+    if (!isDragging || isAnimating) return;
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+    slides.style.transform = `translateX(${-index * slideWidth + diff}px)`;
 }, { passive: true });
 
-// TOUCH END
-slides.addEventListener("touchend", () => {
+// Touch End
+slides.addEventListener("touchend", (e) => {
     if (!isDragging) return;
+    isDragging = false;
+    const endX = e.changedTouches[0].clientX;
+    const diff = endX - startX;
 
-    const diff = currentX - startX;
-    slides.style.transition = "transform 0.4s ease";
-
-    // 🔥 Clamp movement (sirf 1 slide move allowed)
     if (Math.abs(diff) > 50) {
-    if (diff < 0) index++;
-    else index--;
+        if (diff > 0) index--;
+        else index++;
     }
     updateSlider();
-    isDragging = false;
     startAutoSlide();
 });
 
-// 🔥 MAIN UPDATE
-    function updateSlider() {
-    if (isAnimating) return;
-
-    isAnimating = true;
-
-    slides.style.transition = "transform 0.4s ease";
+function updateSlider() {
+    isAnimating = true; // Animation start
+    slides.style.transition = "transform 0.4s ease-out";
     slides.style.transform = `translateX(${-index * slideWidth}px)`;
     updateDots();
-    }
+}
 
-// 🔥 LOOP FIX (important part)
+// 🔥 Loop Fix: Ye blank screen hatayega
 slides.addEventListener("transitionend", () => {
-
-    if (index === totalSlides - 1) {
+    isAnimating = false; // Animation khatam
+    
+    if (index >= totalSlides - 1) {
         slides.style.transition = "none";
         index = 1;
-        slides.style.transform = `translateX(-${slideWidth}px)`;
-    }
-
-    if (index === 0) {
+        slides.style.transform = `translateX(${-index * slideWidth}px)`;
+    } else if (index <= 0) {
         slides.style.transition = "none";
         index = totalSlides - 2;
-        slides.style.transform = `translateX(-${index * slideWidth}px)`;
+        slides.style.transform = `translateX(${-index * slideWidth}px)`;
     }
-
-    updateDots();
-    isAnimating = false;
 });
 
-// AUTO SLIDE
+// Auto Slide Logic
 function startAutoSlide() {
+    stopAutoSlide();
     autoSlide = setInterval(() => {
-
-        // 🔥 IMPORTANT CHECK
-        if (!isDragging && !isAnimating) {
+        if (!isAnimating) {
             index++;
             updateSlider();
         }
-
     }, 4000);
 }
 
@@ -557,24 +522,16 @@ function stopAutoSlide() {
 function resetAutoSlide() {
     stopAutoSlide();
     startAutoSlide();
-    }
+}
+
+// Handle Window Resize
+window.addEventListener("resize", () => {
+    slideWidth = slides.children[0].clientWidth;
+    slides.style.transition = "none";
+    slides.style.transform = `translateX(${-index * slideWidth}px)`;
+});
 
 startAutoSlide();
-    setInterval(() => {
-    if (isAnimating) {
-        isAnimating = false;
-    }
-}, 700);// existing line
-
-// 🔥 FIX 4 (yahan paste karo)
-window.addEventListener("resize", () => {
-    slides.style.transition = "none";
-    slides.style.transform = `translateX(-${index * slideWidth}px)`;
-});
-</script>
-
-
-
-
+        </script>
 </body>
                     </html>

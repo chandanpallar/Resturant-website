@@ -430,11 +430,27 @@ for (let i = 0; i < totalSlides - 2; i++) {
     let dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
     dot.addEventListener("click", () => {
-        if (isAnimating) return;
-        index = i + 1;
+
+    // 🔥 current animation ko turant stop karo
+    slides.style.transition = "none";
+
+    const style = window.getComputedStyle(slides);
+    const matrix = new DOMMatrix(style.transform);
+    const currentX = matrix.m41;
+
+    slides.style.transform = `translateX(${currentX}px)`;
+
+    // 🔥 new index set
+    index = i + 1;
+
+    // 🔥 smooth animation restart
+    requestAnimationFrame(() => {
+        slides.style.transition = "transform 0.4s ease-out";
         updateSlider();
-        resetAutoSlide();
     });
+
+    resetAutoSlide();
+});
     dotsContainer.appendChild(dot);
 }
 

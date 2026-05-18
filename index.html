@@ -6,6 +6,42 @@
     <title>Food Heaven | Final Steps Fixed</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        .menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  margin-top:30px;
+}
+
+.food-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+  transition:0.3s;
+  text-align:center;
+}
+
+.food-card:hover{
+  transform:translateY(-8px);
+}
+
+.food-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.food-card h3{
+  margin:15px 0 5px;
+}
+
+.food-card p{
+  color:#f9bc4d;
+  font-weight:bold;
+  margin-bottom:15px;
+  font-size:18px;
+}
         .social-icons{
   display:flex;
   justify-content:center;
@@ -394,6 +430,39 @@ footer{
             </div>
         </div>
     </section>
+    <section id="fullMenu" class="full-menu">
+
+<h2>Our Full Menu</h2>
+
+<div class="menu-grid">
+
+  <div class="food-card">
+    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=800" alt="Butter Chicken">
+    <h3>Butter Chicken</h3>
+    <p>₹299</p>
+  </div>
+
+  <div class="food-card">
+    <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?q=80&w=800" alt="Biryani">
+    <h3>Chicken Biryani</h3>
+    <p>₹249</p>
+  </div>
+
+  <div class="food-card">
+    <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=800" alt="Paneer Tikka">
+    <h3>Paneer Tikka</h3>
+    <p>₹199</p>
+  </div>
+
+  <div class="food-card">
+    <img src="https://image.cdn.shpy.in/304566/1706197183421_SKU-0085_0.jpeg?format=webp" alt="Egg Roll">
+    <h3>Egg Roll</h3>
+    <p>₹129</p>
+  </div>
+
+</div>
+
+    </section>
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -592,6 +661,12 @@ window.addEventListener("resize", () => {
 });
 
 startAutoSlide();
+        function openMenu() {
+  document.getElementById("fullMenu").style.display = "block";
+
+  document.getElementById("fullMenu")
+    .scrollIntoView({ behavior: "smooth" });
+    }
         </script>
 </body>
                     </html>

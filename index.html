@@ -6,6 +6,41 @@
     <title>Food Heaven | Final Steps Fixed</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        .about-section{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:40px;
+  padding:70px 5%;
+  flex-wrap:wrap;
+}
+
+.about-text{
+  flex:1;
+  min-width:280px;
+}
+
+.about-text h2{
+  font-size:40px;
+  margin-bottom:20px;
+}
+
+.about-text p{
+  line-height:1.8;
+  font-size:17px;
+  margin-bottom:15px;
+}
+
+.about-image{
+  flex:1;
+  min-width:280px;
+}
+
+.about-image img{
+  width:100%;
+  border-radius:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
         .full-menu{
   display:none;
   padding:50px 5%;
@@ -364,7 +399,7 @@ footer{
         <div class="logo"><strong>🍽️ FOOD HEAVEN</strong></div>
         <ul class="nav-links">
             <li><a href="#" onclick="openMenu()">Menu</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#" onclick="openContact()">Contact</a></li>
         </ul>
         <button class="btn-primary">Order Now</button>
@@ -377,6 +412,31 @@ footer{
             <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8f47b636-6e7e-4754-86e4-f5944b3e884c_2463x2516.jpeg" alt="Butter Chicken">
         </div>
     </header>
+    <section id="about" class="about-section">
+
+  <div class="about-text">
+    <h2>About Food Heaven</h2>
+
+    <p>
+      Food Heaven is a modern restaurant serving delicious Indian dishes
+      made with fresh ingredients and authentic flavors.
+    </p>
+
+    <p>
+      From spicy curries to sweet desserts, we bring quality food,
+      fast service, and a warm dining experience for every customer.
+    </p>
+
+    <button class="btn-primary">
+      Explore Menu
+    </button>
+  </div>
+
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200" alt="Restaurant">
+  </div>
+
+    </section>
 <h2 class="menu-title">Customer Favorites</h2>
     <div class="slider">
   <div class="slides" id="slides">

@@ -6,6 +6,10 @@
     <title>Food Heaven | Final Steps Fixed</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        .full-menu{
+  display:none;
+  padding:50px 5%;
+        }
         .menu-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -359,7 +363,7 @@ footer{
     <nav class="navbar">
         <div class="logo"><strong>🍽️ FOOD HEAVEN</strong></div>
         <ul class="nav-links">
-            <li><a href="#" onclick="openmenu()">Menu</a></li>
+            <li><a href="#" onclick="openMenu()">Menu</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#" onclick="openContact()">Contact</a></li>
         </ul>
@@ -667,6 +671,10 @@ startAutoSlide();
   document.getElementById("fullMenu")
     .scrollIntoView({ behavior: "smooth" });
     }
+        function openContact() {
+  document.querySelector(".footer")
+    .scrollIntoView({ behavior: "smooth" });
+        }
         </script>
 </body>
                     </html>

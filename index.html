@@ -881,24 +881,26 @@ let cart = [];
 
 function addToCart(name, price){
 
-  let qty = prompt(
-    "How many plates of " + name + " ?"
-  );
+  let qty = prompt("How many plates of " + name + " ?");
+
+  if(qty === null) return;
 
   qty = Number(qty);
 
-  if(!qty || qty <= 0) return;
+  if(isNaN(qty) || qty <= 0) return;
 
   cart.push({
-    name:name,
-    price:price,
-    qty:qty
+    name: name,
+    price: price,
+    qty: qty
   });
 
   updateCart();
 
   document.getElementById("orderSection")
-  .scrollIntoView({ behavior: "smooth" });
+  .scrollIntoView({
+    behavior: "smooth"
+  });
 }
 
 function updateCart(){
@@ -1059,7 +1061,6 @@ function sendWhatsAppOrder(){
   updateCart();
 
         }
-        
         </script>
 </body>
                     </html>

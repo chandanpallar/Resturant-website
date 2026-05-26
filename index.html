@@ -911,20 +911,37 @@ function updateCart(){
     total += itemTotal;
 
     cartHTML += `
-      <div class="cart-item">
+<div class="cart-item">
 
-      <h4>${item.name}</h4>
+  <div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  ">
 
-      <p>
-      ₹${item.price}
-      ×
-      ${item.qty}
-      =
-      ₹${itemTotal}
-      </p>
+    <h3>${item.name}</h3>
 
-      </div>
-    `;
+    <button onclick="removeItem(${i})"
+    style="
+      background:red;
+      color:white;
+      border:none;
+      padding:6px 12px;
+      border-radius:8px;
+      cursor:pointer;
+    ">
+      Remove
+    </button>
+
+  </div>
+
+  <p>
+    ₹${item.price} × ${item.qty}
+    = ₹${item.price * item.qty}
+  </p>
+
+</div>
+`;
   });
 
   const deliveryType =
@@ -1031,6 +1048,14 @@ function sendWhatsAppOrder(){
   .scrollIntoView({behavior:"smooth"});
 
 }
+        
+        function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+
+        }
         
         </script>
 </body>

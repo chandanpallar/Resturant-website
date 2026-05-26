@@ -884,18 +884,20 @@ function addToCart(name, price){
     "How many plates of " + name + " ?"
   );
 
+  qty = Number(qty);
+
   if(!qty || qty <= 0) return;
 
   cart.push({
     name:name,
     price:price,
-    qty:Number(qty)
+    qty:qty
   });
 
   updateCart();
 
-document.getElementById("orderSection")
-.scrollIntoView({ behavior: "smooth" });
+  document.getElementById("orderSection")
+  .scrollIntoView({ behavior: "smooth" });
 }
 
 function updateCart(){

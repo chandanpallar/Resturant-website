@@ -6,6 +6,30 @@
     <title>Food Heaven | Final Steps Fixed</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        
+        .cart-section{
+  padding:50px 5%;
+}
+
+.cart-item{
+  background:white;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:15px;
+}
+
+.cart-item input{
+  width:60px;
+  padding:5px;
+}
+
+#address{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
         .whatsapp{
   position:fixed;
   bottom:20px;
@@ -595,6 +619,46 @@ footer{
 </div>
 
     </section>
+
+<section class="cart-section">
+
+<h2>Your Order</h2>
+
+<div id="cartItems"></div>
+
+<h3 id="totalBill">Total: ₹0</h3>
+
+<select id="deliveryType">
+  <option value="pickup">
+    Self Pickup
+  </option>
+
+  <option value="delivery">
+    Home Delivery
+  </option>
+</select>
+
+<br><br>
+
+<div id="addressBox" style="display:none;">
+
+<input type="text"
+id="address"
+placeholder="Enter delivery address">
+
+</div>
+
+<br>
+
+<button onclick="sendWhatsAppOrder()"
+class="btn-primary">
+
+Place Order
+
+</button>
+
+</section>    
+    
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -805,6 +869,153 @@ startAutoSlide();
   document.querySelector(".footer")
     .scrollIntoView({ behavior: "smooth" });
         }
+
+let cart = [];
+
+function addToCart(name, price){
+
+  let qty = prompt(
+    "How many plates of " + name + " ?"
+  );
+
+  if(!qty || qty <= 0) return;
+
+  cart.push({
+    name:name,
+    price:price,
+    qty:Number(qty)
+  });
+
+  updateCart();
+}
+
+function updateCart(){
+
+  let cartHTML = "";
+  let total = 0;
+
+  cart.forEach((item,index)=>{
+
+    let itemTotal =
+      item.price * item.qty;
+
+    total += itemTotal;
+
+    cartHTML += `
+      <div class="cart-item">
+
+      <h4>${item.name}</h4>
+
+      <p>
+      ₹${item.price}
+      ×
+      ${item.qty}
+      =
+      ₹${itemTotal}
+      </p>
+
+      </div>
+    `;
+  });
+
+  const deliveryType =
+  document.getElementById("deliveryType").value;
+
+  if(deliveryType === "delivery"){
+    total += 40;
+  }
+
+  document.getElementById(
+    "cartItems"
+  ).innerHTML = cartHTML;
+
+  document.getElementById(
+    "totalBill"
+  ).innerHTML =
+    "Total: ₹" + total;
+}
+
+document.getElementById(
+"deliveryType"
+).addEventListener("change",function(){
+
+  if(this.value === "delivery"){
+
+    document.getElementById(
+      "addressBox"
+    ).style.display = "block";
+
+  } else {
+
+    document.getElementById(
+      "addressBox"
+    ).style.display = "none";
+  }
+
+  updateCart();
+});
+
+function sendWhatsAppOrder(){
+
+  let message =
+  "🍽️ FOOD ORDER %0A%0A";
+
+  let total = 0;
+
+  cart.forEach(item=>{
+
+    let itemTotal =
+      item.price * item.qty;
+
+    total += itemTotal;
+
+    message +=
+      item.name +
+      " - " +
+      item.qty +
+      " plate - ₹" +
+      itemTotal +
+      "%0A";
+  });
+
+  const deliveryType =
+  document.getElementById(
+    "deliveryType"
+  ).value;
+
+  if(deliveryType === "delivery"){
+
+    total += 40;
+
+    const address =
+    document.getElementById(
+      "address"
+    ).value;
+
+    message +=
+      "%0ADelivery: Home Delivery";
+
+    message +=
+      "%0AAddress: " + address;
+
+    message +=
+      "%0ADelivery Charge: ₹40";
+
+  } else {
+
+    message +=
+      "%0APickup: Self Pickup";
+  }
+
+  message +=
+    "%0A%0ATotal Bill: ₹" + total;
+
+  window.open(
+    "https://wa.me/916372618475?text="
+    + message
+  );
+}
+        
         </script>
 </body>
                     </html>

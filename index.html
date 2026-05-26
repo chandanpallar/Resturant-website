@@ -649,6 +649,12 @@ placeholder="Enter delivery address">
 </div>
 
 <br>
+    
+<button onclick="goToMenu()" class="btn-primary">
+  Add More Items
+</button>
+
+<br><br>
 
 <button onclick="sendWhatsAppOrder()"
 class="btn-primary">
@@ -1017,6 +1023,13 @@ function sendWhatsAppOrder(){
     "https://wa.me/916372618475?text="
     + message
   );
+}
+        
+        function goToMenu(){
+
+  document.getElementById("fullMenu")
+  .scrollIntoView({behavior:"smooth"});
+
 }
         
         </script>

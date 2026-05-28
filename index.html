@@ -642,9 +642,18 @@ footer{
 
 <div id="addressBox" style="display:none;">
 
-<input type="text"
-id="address"
-placeholder="Enter delivery address">
+<input
+  type="text"
+  id="address"
+  placeholder="Your location"
+  readonly
+>
+
+<br><br>
+
+<button onclick="getLocation()" class="btn-primary">
+  Use Current Location
+</button>
 
 </div>
 
@@ -1068,6 +1077,30 @@ function sendWhatsAppOrder(){
   updateCart();
 
         }
+        function getLocation(){
+
+  if(navigator.geolocation){
+
+    navigator.geolocation.getCurrentPosition(
+      function(position){
+
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+
+        document.getElementById("address").value =
+          "https://maps.google.com/?q="
+          + lat + "," + lon;
+
+      }
+    );
+
+  } else {
+
+    alert("Geolocation not supported");
+
+  }
+
+}
         </script>
 </body>
                     </html>

@@ -985,14 +985,14 @@ document.getElementById(
 
   updateCart();
 });
-
 function sendWhatsAppOrder(){
-    if(cart.length === 0){
-  alert("Please add items first");
-  return;
-    }
-    
-    let deliveryType =
+
+  if(cart.length === 0){
+    alert("Please add items first");
+    return;
+  }
+
+  let deliveryType =
   document.getElementById("deliveryType").value;
 
   let address =
@@ -1026,19 +1026,9 @@ function sendWhatsAppOrder(){
       "%0A";
   });
 
-  const deliveryType =
-  document.getElementById(
-    "deliveryType"
-  ).value;
-
   if(deliveryType === "delivery"){
 
     total += 40;
-
-    const address =
-    document.getElementById(
-      "address"
-    ).value;
 
     message +=
       "%0ADelivery: Home Delivery";
@@ -1062,7 +1052,7 @@ function sendWhatsAppOrder(){
     "https://wa.me/916372618475?text="
     + message
   );
-}
+      }
         
         function goToMenu(){
 

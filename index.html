@@ -645,8 +645,7 @@ footer{
 <input
   type="text"
   id="address"
-  placeholder="Your location"
-  readonly
+  placeholder="Enter delivery address or choose from map"
 >
 
 <br><br>
@@ -654,6 +653,12 @@ footer{
 <button onclick="getLocation()" class="btn-primary">
   Use Current Location
 </button>
+
+<button onclick="openMapPicker()" class="btn-primary">
+  Choose From Map
+</button>
+
+<br><br>
 
 </div>
 
@@ -1087,11 +1092,19 @@ function sendWhatsAppOrder(){
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
 
-        document.getElementById("address").value =
+        let mapLink =
           "https://maps.google.com/?q="
           + lat + "," + lon;
 
+        document.getElementById("address").value =
+          mapLink;
+
+      },
+
+      function(){
+        alert("Unable to get location");
       }
+
     );
 
   } else {
@@ -1101,6 +1114,29 @@ function sendWhatsAppOrder(){
   }
 
 }
+        function openMapPicker(){
+
+  let address =
+    document.getElementById("address").value;
+
+  if(address.trim() !== ""){
+
+    window.open(
+      "https://www.google.com/maps/search/"
+      + encodeURIComponent(address),
+      "_blank"
+    );
+
+  } else {
+
+    window.open(
+      "https://www.google.com/maps",
+      "_blank"
+    );
+
+  }
+
+        }
         </script>
 </body>
                     </html>

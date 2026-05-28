@@ -794,7 +794,7 @@ function updateDots() {
 }
 
 // Touch Start
-slides.addEventListener("touchstart", (e) => {
+document.querySelector(".slider").addEventListener("touchstart", (e) => {
     if (isAnimating) return; // Block swipe if already moving
     isDragging = true;
     startX = e.touches[0].clientX;
@@ -803,7 +803,7 @@ slides.addEventListener("touchstart", (e) => {
 });
 
 // Touch Move
-slides.addEventListener("touchmove", (e) => {
+document.querySelector(".slider").addEventListener("touchmove", (e) => {
     if (!isDragging || isAnimating) return;
     const currentX = e.touches[0].clientX;
     const diff = currentX - startX;
@@ -811,7 +811,7 @@ slides.addEventListener("touchmove", (e) => {
 }, { passive: true });
 
 // Touch End
-slides.addEventListener("touchend", (e) => {
+document.querySelector(".slider").addEventListener("touchend", (e) => {
     if (!isDragging) return;
     isDragging = false;
     const endX = e.changedTouches[0].clientX;

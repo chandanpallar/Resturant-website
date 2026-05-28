@@ -987,6 +987,23 @@ document.getElementById(
 });
 
 function sendWhatsAppOrder(){
+    if(cart.length === 0){
+  alert("Please add items first");
+  return;
+    }
+    
+    let deliveryType =
+  document.getElementById("deliveryType").value;
+
+  let address =
+  document.getElementById("address").value;
+
+  if(deliveryType === "delivery" &&
+     address.trim() === ""){
+
+    alert("Please enter delivery address");
+    return;
+  }
 
   let message =
   "🍽️ FOOD ORDER %0A%0A";

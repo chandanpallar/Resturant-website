@@ -624,7 +624,9 @@ href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
     </section>
 
-<section id="orderSection" class="cart-section">
+<section id="orderSection"
+class="cart-section"
+style="display:none;">
 
 <h2>Your Order</h2>
 
@@ -939,7 +941,9 @@ function addToCart(name, price){
     price: price,
     qty: qty
   });
-
+document.getElementById(
+  "orderSection"
+).style.display = "block";
   updateCart();
 
   document.getElementById("orderSection")

@@ -1191,6 +1191,12 @@ function setMarker(lat,lng){
   document.getElementById("address").value =
     locationLink;
 }
+ document.querySelector(
+  'button[onclick="sendWhatsAppOrder()"]'
+).scrollIntoView({
+  behavior:"smooth",
+  block:"center"
+});
 
 document.getElementById(
   "locationSearch"

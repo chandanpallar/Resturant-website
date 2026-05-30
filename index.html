@@ -665,10 +665,23 @@ href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   Use Current Location
 </button>
 
-<button class="btn-primary">
-  Tap On Map To Select Location
-</button>
 
+<input
+  type="text"
+  id="locationSearch"
+  placeholder="Search location..."
+  style="
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    margin-bottom:10px;
+  "
+>
+
+<h3>
+  Tap On Map To Select Location manually
+</h3>
 <div id="map" style="
   width:100%;
   height:300px;
@@ -1145,7 +1158,7 @@ function initMap(){
   L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     {
-      attribution: '© OpenStreetMap'
+      attribution:'© OpenStreetMap'
     }
   ).addTo(map);
 
@@ -1154,23 +1167,68 @@ function initMap(){
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
 
-    if(marker){
-      map.removeLayer(marker);
-    }
-
-    marker = L.marker([lat, lng])
-      .addTo(map);
-
-    const locationLink =
-      "https://maps.google.com/?q="
-      + lat + "," + lng;
-
-    document.getElementById("address").value =
-      locationLink;
+    setMarker(lat,lng);
 
   });
 
 }
+
+function setMarker(lat,lng){
+
+  if(marker){
+    map.removeLayer(marker);
+  }
+
+  marker = L.marker([lat,lng])
+    .addTo(map);
+
+  map.setView([lat,lng],15);
+
+  const locationLink =
+    "https://maps.google.com/?q="
+    + lat + "," + lng;
+
+  document.getElementById("address").value =
+    locationLink;
+}
+
+document.getElementById(
+  "locationSearch"
+).addEventListener("keydown",function(e){
+
+  if(e.key === "Enter"){
+
+    e.preventDefault();
+
+    let query = this.value;
+
+    fetch(
+      "https://nominatim.openstreetmap.org/search?format=json&q="
+      + encodeURIComponent(query)
+    )
+
+    .then(res => res.json())
+
+    .then(data => {
+
+      if(data.length > 0){
+
+        const lat = data[0].lat;
+        const lng = data[0].lon;
+
+        setMarker(lat,lng);
+
+      } else {
+
+        alert("Location not found");
+
+      }
+
+    });
+
+  }
+
+});
 
 window.onload = initMap;
         </script>

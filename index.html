@@ -680,6 +680,9 @@ style="display:none;">
     margin-bottom:10px;
   "
 >
+    <button onclick="searchLocation()" class="btn-primary">
+  Search
+</button>
 
 <h3>
   Tap On Map To Select Location manually
@@ -1263,6 +1266,38 @@ if(manualAddress){
 });
 
 window.onload = initMap;
+function searchLocation(){
+
+  let query =
+    document.getElementById(
+      "locationSearch"
+    ).value;
+
+  fetch(
+    "https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=in&q="
+    + encodeURIComponent(query)
+  )
+
+  .then(res => res.json())
+
+  .then(data => {
+
+    if(data.length > 0){
+
+      const lat = data[0].lat;
+      const lng = data[0].lon;
+
+      setMarker(lat,lng);
+
+    } else {
+
+      alert("Location not found");
+
+    }
+
+  });
+
+      }
         </script>
 </body>
                     </html>

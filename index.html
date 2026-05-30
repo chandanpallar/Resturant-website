@@ -1101,29 +1101,38 @@ function sendWhatsAppOrder(){
     "%0A%0ATotal Bill: ₹" + total;
 
   window.open(
-  "https://wa.me/916372618475?text="
-  + message
-);
+    "https://wa.me/916372618475?text="
+    + message
+  );
 
-// Cart empty
-cart = [];
+  // Cart empty
+  cart = [];
 
-// Update UI
-updateCart();
+  // Update UI
+  updateCart();
 
-// Address clear
-document.getElementById("address").value = "";
+  // Address clear
+  document.getElementById(
+    "address"
+  ).value = "";
 
-// Delivery reset
-document.getElementById(
-  "deliveryType"
-).value = "pickup";
+  // Delivery reset
+  document.getElementById(
+    "deliveryType"
+  ).value = "pickup";
 
-// Hide address box
-document.getElementById(
-  "addressBox"
-).style.display = "none";
-      }
+  // Hide address box
+  document.getElementById(
+    "addressBox"
+  ).style.display = "none";
+
+  // Hide order section
+  document.getElementById(
+    "orderSection"
+  ).style.display = "none";
+
+        }
+
         
         function goToMenu(){
 

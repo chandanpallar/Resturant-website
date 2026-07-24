@@ -1389,6 +1389,15 @@ function searchLocation(){
   });
 
 }
+
+    // Sabhi step cards ko select karke click event attach kar rahe hain
+    document.querySelectorAll('.step-card').forEach(card => {
+        card.style.cursor = 'pointer'; // Cursor hand icon banane ke liye
+        
+        card.addEventListener('click', () => {
+            openMenu(); // Ye aapka wahi function call karega
+        });
+    });
         </script>
 </body>
                     </html>

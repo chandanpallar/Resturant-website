@@ -819,7 +819,7 @@ Place Order
 const slides = document.getElementById("slides");
 const dotsContainer = document.getElementById("dots");
 
-let slideWidth = slides.children[0].clientWidth;
+let slideWidth = document.querySelector(".slider").clientWidth;
 let index = 1;
 let startX = 0;
 let isDragging = false;

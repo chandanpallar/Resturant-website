@@ -97,23 +97,21 @@
     align-items:center;
     text-decoration:none;
     font-size:34px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.25);
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
     z-index:999;
 
-    /* Floating animation */
-    animation: whatsappFloat 1.5s ease-in-out infinite;
+    animation: bounce 1s infinite;
 }
 
-.whatsapp:hover{
-    transform:scale(1.1);
-}
-
-@keyframes whatsappFloat{
-    0%, 100%{
-        transform:translateY(0);
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8,0,1,1);
     }
-    50%{
-        transform:translateY(-8px);
+
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0,0,0.2,1);
     }
 }
         .about-section{
@@ -872,9 +870,9 @@ Place Order
     </footer>
 
     <!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/916372618475" target="_blank">  
-   <i class="fab fa-whatsapp"></i>  
-</a>
+<a class="whatsapp animate-bounce"
+   href="https://wa.me/916372618475"
+   target="_blank">
     
     
     <!-- FOOTER -->

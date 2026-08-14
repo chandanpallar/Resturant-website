@@ -11,6 +11,49 @@
 <meta name="keywords" content="Food Heaven, Restaurant Website, HTML, CSS, JavaScript, Chandan Pallar, website developer near bhubaneswar">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        .demo-notice {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    padding: 20px;
+}
+
+.notice-box {
+    position: relative;
+    max-width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.notice-box p {
+    line-height: 1.6;
+    color: #333;
+}
+
+.close-btn {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.continue-btn {
+    margin-top: 15px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+        }
         .footer-location{
   font-size:18px;
   line-height:1.8;
@@ -446,6 +489,19 @@ href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
+    <div id="demoNotice" class="demo-notice">
+    <div class="notice-box">
+        <button class="close-btn" onclick="closeNotice()">×</button>
+
+        <p>
+            ⚠️ <strong>Note:</strong> This is a demo restaurant website
+            created for learning and portfolio purposes. It is not currently
+            operational, and online ordering or delivery services are not available.
+        </p>
+
+        <button class="continue-btn" onclick="closeNotice()">Continue</button>
+    </div>
+    </div>
     <div style="
 background:#fff3cd;
 color:#856404;
@@ -1398,6 +1454,11 @@ function searchLocation(){
             openMenu(); // Ye aapka wahi function call karega
         });
     });
+    <script>
+function closeNotice() {
+    document.getElementById("demoNotice").style.display = "none";
+}
+</script>
         </script>
 </body>
                     </html>

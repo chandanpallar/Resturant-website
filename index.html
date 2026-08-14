@@ -100,10 +100,10 @@
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
     z-index:999;
 
-    animation: bounce 1s infinite;
+    animation: whatsappBounce 1s infinite;
 }
 
-@keyframes bounce {
+@keyframes whatsappBounce {
     0%, 100% {
         transform: translateY(-25%);
         animation-timing-function: cubic-bezier(0.8,0,1,1);
@@ -113,6 +113,10 @@
         transform: translateY(0);
         animation-timing-function: cubic-bezier(0,0,0.2,1);
     }
+}
+
+.whatsapp:hover{
+    transform:scale(1.1);
 }
         .about-section{
   display:flex;
@@ -870,9 +874,15 @@ Place Order
     </footer>
 
     <!-- WHATSAPP -->
-<a class="whatsapp animate-bounce"
+<!-- Floating WhatsApp Button -->
+<a class="whatsapp"
    href="https://wa.me/916372618475"
-   target="_blank">
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+</a>
     
     
     <!-- FOOTER -->
